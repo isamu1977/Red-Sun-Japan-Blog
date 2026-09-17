@@ -74,74 +74,67 @@ const categories = [
   >
     {
       heroPost && (
-        <section id="hero-article" class="mb-12 sm:mb-16">
-          <div class="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-stretch">
+        <section id="hero-article">
+          <div class="mb-12 grid grid-cols-1 items-start gap-8 lg:grid-cols-12">
             <!-- Main column: Featured Chronicle (8 of 12 on lg) -->
-            <div class="lg:col-span-8">
+            <div class="flex flex-col lg:col-span-8">
               <article
                 id="hero-feature-card"
-                class="group relative h-full overflow-hidden rounded-2xl border border-[#ded7cb] bg-white p-5 shadow-sm shadow-stone-900/5 transition-all duration-300 hover:border-[#b91c1c]/50 hover:shadow-2xl hover:shadow-black/10 sm:p-6 lg:p-8 dark:border-[#27272a] dark:bg-[#161619] dark:shadow-none dark:hover:shadow-black/70"
+                class="flex flex-col gap-6 rounded-2xl border border-[#ded7cb] bg-white p-6 shadow-sm dark:border-[#27272a] dark:bg-[#161619]"
               >
-                <div class="grid h-full grid-cols-1 items-stretch gap-6 lg:grid-cols-12 lg:gap-8">
-                  <!-- Image Column (7 of 12 inside the main col) -->
-                  <div class="lg:col-span-7">
                 <a
                   href={heroUrl}
                   tabindex="-1"
                   aria-hidden="true"
-                  class="relative aspect-video w-full block overflow-hidden rounded-xl bg-stone-100 dark:bg-[#121214]"
+                  class="relative block w-full overflow-hidden rounded-xl bg-stone-100 dark:bg-[#121214]"
                 >
-                  {heroCoverSrc ? (
-                    <img
-                      src={heroCoverSrc}
-                      alt={heroData.title}
-                      loading="eager"
-                      fetchpriority="high"
-                      decoding="async"
-                      class="size-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                    />
-                  ) : (
-                    <div class="flex size-full items-center justify-center bg-stone-100 text-stone-400 dark:bg-[#18181b] dark:text-[#71717a]">
-                      <span class="font-display text-base tracking-widest uppercase">
-                        Red Sun Japan
-                      </span>
-                    </div>
-                  )}
-                  <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-stone-900/40 via-transparent to-transparent opacity-40 transition-opacity duration-300 group-hover:opacity-20 dark:from-[#121214] dark:via-black/25 dark:opacity-60 dark:group-hover:opacity-30" />
-                </a>
-              </div>
-
-              <!-- 40% Text Content Column (5 cols on lg) -->
-              <div class="lg:col-span-5 flex flex-col justify-between">
-                <div>
-                  <div class="flex items-center gap-2">
-                    <span class="inline-flex items-center gap-1.5 rounded-full border border-red-200 bg-red-50 px-3 py-1 font-mono text-xs font-bold uppercase tracking-wider text-[#b91c1c] dark:border-[#b91c1c]/40 dark:bg-[#b91c1c]/15 dark:text-[#ef4444]">
-                      <span class="size-1.5 rounded-full bg-[#b91c1c] dark:bg-[#ef4444] animate-pulse" />
-                      {heroPrimaryTag}
-                    </span>
-                    <span class="font-mono text-xs text-stone-500 dark:text-[#71717a] uppercase tracking-wider">
-                      Featured Chronicle
-                    </span>
+                  <div class="aspect-video w-full">
+                    {heroCoverSrc ? (
+                      <img
+                        src={heroCoverSrc}
+                        alt={heroData.title}
+                        loading="eager"
+                        fetchpriority="high"
+                        decoding="async"
+                        class="size-full object-cover transition-transform duration-700 ease-out hover:scale-105"
+                      />
+                    ) : (
+                      <div class="flex size-full items-center justify-center bg-stone-100 text-stone-400 dark:bg-[#18181b] dark:text-[#71717a]">
+                        <span class="font-display text-base tracking-widest uppercase">
+                          Red Sun Japan
+                        </span>
+                      </div>
+                    )}
+                    <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-stone-900/40 via-transparent to-transparent opacity-40 transition-opacity duration-300 hover:opacity-20 dark:from-[#121214] dark:via-black/25 dark:opacity-60 dark:hover:opacity-30" />
                   </div>
+                </a>
 
-                  <a href={heroUrl} class="mt-4 block focus-visible:outline-none">
-                    <h2
-                      transition:name={toTransitionName(heroPost.id)}
-                      class="font-display text-2xl sm:text-3xl lg:text-3xl xl:text-4xl font-bold tracking-tight text-stone-900 transition-colors duration-200 hover:text-[#b91c1c] dark:text-[#e2ded7] dark:hover:text-[#ef4444] leading-tight"
-                    >
-                      {heroData.title}
-                    </h2>
-                  </a>
-
-                  <p class="mt-4 text-sm sm:text-base leading-relaxed text-stone-600 dark:text-[#a1a1aa] line-clamp-3 lg:line-clamp-4">
-                    {heroData.description}
-                  </p>
+                <div class="flex items-center gap-3">
+                  <span class="font-mono text-xs font-bold uppercase tracking-wider text-[#b91c1c] dark:text-[#ef4444]">
+                    • {heroPrimaryTag}
+                  </span>
+                  <span class="font-mono text-xs uppercase tracking-wider text-stone-400">
+                    Featured Chronicle
+                  </span>
                 </div>
 
-                <div class="mt-6 flex flex-wrap items-center justify-between gap-4 border-t border-[#ded7cb]/80 pt-4 dark:border-[#27272a]/60">
+                <a href={heroUrl} class="focus-visible:outline-none">
+                  <h2
+                    transition:name={toTransitionName(heroPost.id)}
+                    class="font-display text-2xl font-bold leading-tight text-stone-900 transition-colors duration-200 hover:text-[#b91c1c] sm:text-3xl dark:text-[#e2ded7] dark:hover:text-[#ef4444]"
+                  >
+                    {heroData.title}
+                  </h2>
+                </a>
+
+                <p class="text-base leading-relaxed text-stone-600 dark:text-[#a1a1aa] line-clamp-3">
+                  {heroData.description}
+                </p>
+
+                <div class="mt-auto flex items-center justify-between border-t border-stone-200 pt-4 dark:border-[#27272a]">
                   <div class="flex items-center gap-2 font-mono text-xs text-stone-500 dark:text-[#71717a]">
                     <Datetime {...heroData} />
-                    <span>•</span>
+                    <span aria-hidden="true">•</span>
                     <span>{heroReadingTime}</span>
                   </div>
 
@@ -160,7 +153,6 @@ const categories = [
                       stroke-width="2"
                       stroke-linecap="round"
                       stroke-linejoin="round"
-                      class="transition-transform duration-200 group-hover:translate-x-0.5"
                     >
                       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                       <path d="M5 12l14 0" />
@@ -169,13 +161,11 @@ const categories = [
                     </svg>
                   </a>
                 </div>
-              </div>
-                </div>
               </article>
             </div>
 
             <!-- Sidebar column: Trending Chronicles (4 of 12 on lg) -->
-            <div class="lg:col-span-4">
+            <div class="flex flex-col lg:col-span-4">
               <TrendingSidebar posts={trendingPosts} />
             </div>
           </div>
