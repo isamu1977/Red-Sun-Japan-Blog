@@ -1,0 +1,348 @@
+---
+import { getRelativeLocaleUrl } from "astro:i18n";
+
+const privacyUrl = getRelativeLocaleUrl(Astro.currentLocale ?? "en", "privacy");
+---
+
+<!-- Floating Cookie Management Root Container -->
+<div
+  id="rsj-cookie-root"
+  class="fixed inset-x-4 bottom-4 z-50 mx-auto hidden max-w-2xl transition-all duration-300"
+>
+  <!-- 1. Primary Banner View -->
+  <div
+    id="rsj-cookie-banner"
+    role="region"
+    aria-label="Cookie consent banner"
+    class="rounded-xl border border-stone-200 bg-white/98 p-5 text-stone-800 shadow-2xl backdrop-blur-md dark:border-[#27272a] dark:bg-[#18181b]/98 dark:text-[#e2ded7]"
+  >
+    <div class="flex flex-col gap-4">
+      <div class="flex items-start gap-3">
+        <div class="mt-0.5 rounded-md bg-[#b91c1c]/10 p-2 text-[#b91c1c] shrink-0 dark:bg-[#b91c1c]/15">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="size-5"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3" />
+            <path d="M12 11m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+            <path d="M12 12l0 2.5" />
+          </svg>
+        </div>
+        <div>
+          <h3 class="text-base font-semibold text-stone-900 dark:text-[#e2ded7]">
+            Privacy & Cookie Governance
+          </h3>
+          <p class="mt-1 text-xs leading-relaxed text-stone-600 sm:text-sm dark:text-[#928f88]">
+            We respect your digital sovereignty (GDPR, CCPA, LGPD, and APPI). We use necessary storage for core functionality, while analytics and media personalization remain disabled by default until you grant permission. Read our{" "}
+            <a
+              href={privacyUrl}
+              class="text-[#b91c1c] underline decoration-dashed underline-offset-4 transition-colors hover:text-[#9e1b1b] dark:text-accent dark:hover:text-red-400"
+            >
+              Privacy Policy
+            </a>
+            .
+          </p>
+        </div>
+      </div>
+
+      <!-- Action Buttons with Equivalent Weight -->
+      <div class="flex flex-col gap-2 pt-1 sm:flex-row sm:items-center sm:justify-end">
+        <button
+          id="rsj-cookie-customize-btn"
+          type="button"
+          class="cursor-pointer rounded-lg border border-stone-300 bg-transparent px-3.5 py-2 text-xs font-medium text-stone-800 transition-colors duration-200 hover:bg-stone-100 hover:text-stone-900 dark:border-[#3f3f46] dark:text-[#e2ded7] dark:hover:bg-[#27272a] dark:hover:text-white"
+        >
+          Customize Preferences
+        </button>
+        <button
+          id="rsj-cookie-reject-btn"
+          type="button"
+          class="cursor-pointer rounded-lg border border-stone-200 bg-stone-100 px-3.5 py-2 text-xs font-semibold text-stone-800 transition-colors duration-200 hover:bg-stone-200 hover:text-stone-900 dark:border-[#3f3f46] dark:bg-[#27272a] dark:text-[#e2ded7] dark:hover:bg-[#3f3f46] dark:hover:text-white"
+        >
+          Reject Non-Essential
+        </button>
+        <button
+          id="rsj-cookie-accept-all-btn"
+          type="button"
+          class="cursor-pointer rounded-lg bg-[#b91c1c] px-4 py-2 text-xs font-semibold uppercase tracking-wider text-white shadow transition-colors duration-200 hover:bg-[#9e1b1b] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#b91c1c]"
+        >
+          Accept All
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Granular Preferences Modal View -->
+  <div
+    id="rsj-cookie-modal"
+    role="dialog"
+    aria-labelledby="rsj-modal-title"
+    class="hidden max-h-[85vh] overflow-y-auto rounded-xl border border-stone-200 bg-white/98 p-6 text-stone-800 shadow-2xl backdrop-blur-md dark:border-[#27272a] dark:bg-[#18181b]/98 dark:text-[#e2ded7]"
+  >
+    <div class="flex items-center justify-between border-b border-stone-200 pb-4 dark:border-[#27272a]">
+      <div>
+        <h3 id="rsj-modal-title" class="text-lg font-bold text-stone-900 dark:text-[#e2ded7]">
+          Manage Privacy & Cookie Preferences
+        </h3>
+        <p class="mt-0.5 text-xs text-stone-500 dark:text-[#928f88]">
+          Granular controls compliant with global data protection standards.
+        </p>
+      </div>
+      <button
+        id="rsj-modal-close-btn"
+        type="button"
+        class="cursor-pointer rounded-md p-1.5 text-stone-500 hover:bg-stone-100 hover:text-stone-800 dark:text-[#928f88] dark:hover:bg-[#27272a] dark:hover:text-[#e2ded7]"
+        aria-label="Close preferences"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M18 6l-12 12" />
+          <path d="M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Category Cards -->
+    <div class="mt-4 flex flex-col gap-3.5">
+      <!-- Necessary Cookies -->
+      <div class="rounded-lg border border-stone-200 bg-stone-50 p-3.5 dark:border-[#27272a] dark:bg-[#141416]">
+        <div class="flex items-center justify-between">
+          <div class="pr-3">
+            <span class="text-sm font-semibold text-stone-900 dark:text-[#e2ded7]">Strictly Necessary</span>
+            <span class="ml-2 inline-block rounded bg-stone-200 px-2 py-0.5 text-[10px] font-bold text-stone-700 uppercase tracking-wider dark:bg-[#27272a] dark:text-[#928f88]">
+              Always Active
+            </span>
+          </div>
+          <input
+            type="checkbox"
+            checked
+            disabled
+            class="size-4 cursor-not-allowed accent-[#b91c1c] opacity-80"
+          />
+        </div>
+        <p class="mt-1.5 text-xs leading-relaxed text-stone-600 dark:text-[#928f88]">
+          Essential for security, session state, theme preservation (Dark Mode), and storing your consent preferences. These cannot be disabled.
+        </p>
+      </div>
+
+      <!-- Analytics Cookies -->
+      <div class="rounded-lg border border-stone-200 bg-stone-50 p-3.5 dark:border-[#27272a] dark:bg-[#141416]">
+        <div class="flex items-center justify-between">
+          <div class="pr-3">
+            <label for="rsj-pref-analytics" class="cursor-pointer text-sm font-semibold text-stone-900 dark:text-[#e2ded7]">
+              Analytics & Telemetry
+            </label>
+          </div>
+          <input
+            id="rsj-pref-analytics"
+            type="checkbox"
+            class="size-4 cursor-pointer rounded border-stone-300 bg-white accent-[#b91c1c] dark:border-[#3f3f46] dark:bg-[#27272a]"
+          />
+        </div>
+        <p class="mt-1.5 text-xs leading-relaxed text-stone-600 dark:text-[#928f88]">
+          Helps us anonymously understand reader navigation, popular samurai chronicles, and search queries to optimize performance without tracking individual identity.
+        </p>
+      </div>
+
+      <!-- Marketing & Personalization Cookies -->
+      <div class="rounded-lg border border-stone-200 bg-stone-50 p-3.5 dark:border-[#27272a] dark:bg-[#141416]">
+        <div class="flex items-center justify-between">
+          <div class="pr-3">
+            <label for="rsj-pref-marketing" class="cursor-pointer text-sm font-semibold text-stone-900 dark:text-[#e2ded7]">
+              Marketing & Embedded Media
+            </label>
+          </div>
+          <input
+            id="rsj-pref-marketing"
+            type="checkbox"
+            class="size-4 cursor-pointer rounded border-stone-300 bg-white accent-[#b91c1c] dark:border-[#3f3f46] dark:bg-[#27272a]"
+          />
+        </div>
+        <p class="mt-1.5 text-xs leading-relaxed text-stone-600 dark:text-[#928f88]">
+          Controls third-party identifiers (such as Google AdSense, Pinterest Tags, or enhanced media widgets) used to measure engagement with sponsored material.
+        </p>
+      </div>
+    </div>
+
+    <!-- Modal Footer Actions -->
+    <div class="mt-5 flex flex-col-reverse gap-2 border-t border-stone-200 pt-4 sm:flex-row sm:items-center sm:justify-end dark:border-[#27272a]">
+      <button
+        id="rsj-modal-reject-all-btn"
+        type="button"
+        class="cursor-pointer rounded-lg border border-stone-200 bg-stone-100 px-4 py-2 text-xs font-semibold text-stone-800 transition-colors hover:bg-stone-200 hover:text-stone-900 dark:border-[#3f3f46] dark:bg-[#27272a] dark:text-[#e2ded7] dark:hover:bg-[#3f3f46] dark:hover:text-white"
+      >
+        Reject All
+      </button>
+      <button
+        id="rsj-modal-save-btn"
+        type="button"
+        class="cursor-pointer rounded-lg bg-[#b91c1c] px-4 py-2 text-xs font-semibold uppercase tracking-wider text-white shadow transition-colors hover:bg-[#9e1b1b] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#b91c1c]"
+      >
+        Save Preferences
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  interface CookieConsentData {
+    necessary: boolean;
+    analytics: boolean;
+    marketing: boolean;
+    timestamp: string;
+  }
+
+  const STORAGE_KEY = "rsj_cookie_consent";
+
+  function getStoredConsent(): CookieConsentData | null {
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      return stored ? JSON.parse(stored) : null;
+    } catch {
+      return null;
+    }
+  }
+
+  function saveConsent(data: Omit<CookieConsentData, "timestamp">) {
+    const fullData: CookieConsentData = {
+      ...data,
+      timestamp: new Date().toISOString(),
+    };
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(fullData));
+    } catch {
+      // ignore storage quota errors
+    }
+
+    // Expose globally & dispatch event
+    (window as unknown as { __rsjConsent: CookieConsentData }).__rsjConsent = fullData;
+    window.dispatchEvent(
+      new CustomEvent("cookieConsentUpdated", { detail: fullData })
+    );
+
+    hideAll();
+  }
+
+  function showBanner() {
+    const root = document.getElementById("rsj-cookie-root");
+    const banner = document.getElementById("rsj-cookie-banner");
+    const modal = document.getElementById("rsj-cookie-modal");
+
+    if (!root || !banner || !modal) return;
+    modal.classList.add("hidden");
+    banner.classList.remove("hidden");
+    root.classList.remove("hidden", "opacity-0", "translate-y-4");
+  }
+
+  function showModal() {
+    const root = document.getElementById("rsj-cookie-root");
+    const banner = document.getElementById("rsj-cookie-banner");
+    const modal = document.getElementById("rsj-cookie-modal");
+    const analyticsInput = document.getElementById("rsj-pref-analytics") as HTMLInputElement | null;
+    const marketingInput = document.getElementById("rsj-pref-marketing") as HTMLInputElement | null;
+
+    if (!root || !banner || !modal) return;
+
+    // Prefill checkboxes if already consented
+    const current = getStoredConsent();
+    if (analyticsInput) analyticsInput.checked = current?.analytics ?? false;
+    if (marketingInput) marketingInput.checked = current?.marketing ?? false;
+
+    banner.classList.add("hidden");
+    modal.classList.remove("hidden");
+    root.classList.remove("hidden", "opacity-0", "translate-y-4");
+  }
+
+  function hideAll() {
+    const root = document.getElementById("rsj-cookie-root");
+    if (!root) return;
+    root.classList.add("opacity-0", "translate-y-4");
+    setTimeout(() => {
+      root.classList.add("hidden");
+    }, 300);
+  }
+
+  function initCookieConsent() {
+    const root = document.getElementById("rsj-cookie-root");
+    if (!root) return;
+
+    // Attach to global window for external triggers (e.g. Footer link)
+    (window as unknown as { openCookiePreferences: () => void }).openCookiePreferences = showModal;
+
+    const acceptAllBtn = document.getElementById("rsj-cookie-accept-all-btn");
+    const rejectBtn = document.getElementById("rsj-cookie-reject-btn");
+    const customizeBtn = document.getElementById("rsj-cookie-customize-btn");
+    const modalCloseBtn = document.getElementById("rsj-modal-close-btn");
+    const modalSaveBtn = document.getElementById("rsj-modal-save-btn");
+    const modalRejectAllBtn = document.getElementById("rsj-modal-reject-all-btn");
+    const analyticsInput = document.getElementById("rsj-pref-analytics") as HTMLInputElement | null;
+    const marketingInput = document.getElementById("rsj-pref-marketing") as HTMLInputElement | null;
+
+    acceptAllBtn?.addEventListener("click", () => {
+      saveConsent({ necessary: true, analytics: true, marketing: true });
+    });
+
+    rejectBtn?.addEventListener("click", () => {
+      saveConsent({ necessary: true, analytics: false, marketing: false });
+    });
+
+    customizeBtn?.addEventListener("click", () => {
+      showModal();
+    });
+
+    modalCloseBtn?.addEventListener("click", () => {
+      const stored = getStoredConsent();
+      if (stored) {
+        hideAll();
+      } else {
+        showBanner();
+      }
+    });
+
+    modalRejectAllBtn?.addEventListener("click", () => {
+      saveConsent({ necessary: true, analytics: false, marketing: false });
+    });
+
+    modalSaveBtn?.addEventListener("click", () => {
+      saveConsent({
+        necessary: true,
+        analytics: analyticsInput?.checked ?? false,
+        marketing: marketingInput?.checked ?? false,
+      });
+    });
+
+    // Check existing consent
+    const stored = getStoredConsent();
+    if (!stored) {
+      showBanner();
+    } else {
+      (window as unknown as { __rsjConsent: CookieConsentData }).__rsjConsent = stored;
+    }
+  }
+
+  // Support initial load and Astro View Transitions
+  initCookieConsent();
+  document.addEventListener("astro:page-load", initCookieConsent);
+
+  // Global listener for custom open event
+  window.addEventListener("rsj:open-cookie-preferences", showModal);
+</script>

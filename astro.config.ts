@@ -20,6 +20,9 @@ import { transformerFileName } from "./src/utils/transformers/fileName";
 import config from "./astro-paper.config";
 
 export default defineConfig({
+  devToolbar: {
+    enabled: false,
+  },
   site: config.site.url,
   integrations: [
     mdx(),
@@ -66,6 +69,15 @@ export default defineConfig({
       fallbacks: ["monospace"],
       weights: [300, 400, 500, 600, 700],
       styles: ["normal", "italic"],
+      formats: ["woff", "ttf"],
+    },
+    {
+      name: "Cinzel",
+      cssVariable: "--font-cinzel",
+      provider: fontProviders.google(),
+      fallbacks: ["Georgia", "serif"],
+      weights: [600, 700, 800],
+      styles: ["normal"],
       formats: ["woff", "ttf"],
     },
   ],

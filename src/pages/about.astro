@@ -30,6 +30,65 @@ const { Content } = await render(about);
 
   <Main pageTitle={about.data.title} class="app-prose">
     <Content />
+
+    <div class="not-prose my-10 rounded-lg border border-[#27272b] bg-[#161619] p-6 shadow-md">
+      <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div class="flex items-start gap-4">
+          <div class="rounded-md bg-[#b91c1c]/15 p-3 text-[#b91c1c]">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="32"
+              height="32"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="size-8 stroke-current"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M2 8a4 4 0 0 1 4 -4h12a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-12a4 4 0 0 1 -4 -4v-8z" />
+              <path d="M10 9l5 3l-5 3z" />
+            </svg>
+          </div>
+          <div>
+            <h2 class="text-xl font-bold tracking-tight text-[#e2ded7]">
+              Official YouTube Channel
+            </h2>
+            <p class="mt-1 text-sm text-[#928f88]">
+              Watch our cinematic documentaries, original narrations, and feudal chronicles on <span class="font-medium text-[#e2ded7]">@redsunjapan</span>.
+            </p>
+          </div>
+        </div>
+        <div class="shrink-0 sm:self-center">
+          <a
+            href="https://www.youtube.com/@redsunjapan"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 rounded bg-[#b91c1c] px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-[#9e1b1b] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#b91c1c]"
+          >
+            <span>Visit @redsunjapan</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="size-4"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M17 7l-10 10" />
+              <path d="M8 7l9 0l0 9" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
   </Main>
 
   <Footer />

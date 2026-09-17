@@ -5,6 +5,8 @@ interface SiteConfig {
   title: string;
   /** Short description used in SEO meta and RSS feed */
   description: string;
+  /** Alias for description */
+  desc?: string;
   /** Default post author name */
   author: string;
   /** Author profile URL (used in structured data) */
@@ -115,7 +117,7 @@ type ResolvedSiteConfig = Required<
     | "ogImage"
   >
 > &
-  Pick<SiteConfig, "profile" | "googleVerification">;
+  Pick<SiteConfig, "profile" | "googleVerification" | "desc">;
 
 export interface ResolvedAstroPaperConfig {
   site: ResolvedSiteConfig;

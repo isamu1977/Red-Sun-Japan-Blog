@@ -1,0 +1,46 @@
+---
+interface Props {
+  /** YouTube Video ID or full video URL */
+  id: string;
+  /** Accessible iframe title */
+  title?: string;
+  /** Additional CSS classes */
+  class?: string;
+}
+
+const { id, title = "Red Sun Japan Video", class: className = "" } = Astro.props;
+
+// Extract clean 11-character video ID if a full URL is provided
+function extractVideoId(input: string): string {
+  if (!input) return "";
+  const trimmed = input.trim();
+  
+  // Standard youtube.com/watch?v=ID or youtu.be/ID or youtube-nocookie.com/embed/ID
+  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+  const match = trimmed.match(regExp);
+
+  return match && match[2].length === 11 ? match[2] : trimmed;
+}
+
+const videoId = extractVideoId(id);
+const embedUrl = `https://www.youtube-nocookie.com/embed/${videoId}`;
+---
+
+<div
+  class:list={[
+    "not-prose my-6 w-full overflow-hidden rounded-lg border border-[#27272a] bg-[#141416] shadow-lg",
+    className,
+  ]}
+>
+  <div class="relative aspect-video w-full">
+    <iframe
+      src={embedUrl}
+      title={title}
+      loading="lazy"
+      class="absolute inset-0 size-full border-0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen
+    ></iframe>
+  </div>
+</div>

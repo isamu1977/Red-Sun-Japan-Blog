@@ -2,30 +2,144 @@
 import type { CollectionEntry } from "astro:content";
 import { getPostUrl } from "@/utils/getPostPaths";
 import { toTransitionName } from "@/utils/toTransitionName";
+import { getAssetPath } from "@/utils/withBase";
+import { getReadingTime } from "@/utils/getReadingTime";
 import Datetime from "./Datetime.astro";
 
 type Props = {
   variant?: "h2" | "h3";
+  layout?: "grid" | "horizontal";
 } & CollectionEntry<"posts">;
 
-const { variant: Heading = "h2", id, data, filePath } = Astro.props;
+const {
+  variant: Heading = "h2",
+  id,
+  data,
+  filePath,
+  body,
+  layout = "grid",
+} = Astro.props;
 
-const { title, description, ...props } = data;
+const { title, description, ogImage, heroImage, tags, ...props } = data;
+
+const rawCover = heroImage ?? ogImage;
+const coverSrc =
+  typeof rawCover === "string"
+    ? getAssetPath(rawCover)
+    : rawCover && typeof rawCover === "object" && "src" in rawCover
+      ? (rawCover.src as string)
+      : undefined;
+
+const postUrl = getPostUrl(id, filePath, Astro.currentLocale);
+const primaryTag = tags?.[0] ?? "History";
+const readingTime = getReadingTime(body);
+const postTags = (tags ?? []).map(t => t.toLowerCase()).join(" ");
 ---
 
-<li class="my-6">
-  <a
-    href={getPostUrl(id, filePath, Astro.currentLocale)}
-    class:list={[
-      "text-accent inline-block text-lg font-medium",
-      "decoration-dashed underline-offset-4 hover:underline",
-      "focus-visible:no-underline focus-visible:underline-offset-0",
-    ]}
-  >
-    <Heading transition:name={toTransitionName(id)}>
-      {title}
-    </Heading>
-  </a>
-  <Datetime {...props} />
-  <p>{description}</p>
-</li>
+{
+  layout === "grid" ? (
+    <article
+      data-post-card
+      data-tags={postTags}
+      class="group relative flex flex-col justify-between overflow-hidden rounded-xl border border-[#ded7cb] bg-white p-4 shadow-sm shadow-stone-900/5 transition-all duration-300 hover:border-[#b91c1c]/50 hover:shadow-xl hover:shadow-black/10 dark:border-[#27272a] dark:bg-[#161619] dark:shadow-none dark:hover:shadow-black/60"
+    >
+      <div>
+        <a
+          href={postUrl}
+          tabindex="-1"
+          aria-hidden="true"
+          class="relative aspect-video w-full block overflow-hidden rounded-lg bg-stone-100 dark:bg-[#121214]"
+        >
+          {coverSrc ? (
+            <img
+              src={coverSrc}
+              alt=""
+              loading="lazy"
+              decoding="async"
+              class="size-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+            />
+          ) : (
+            <div class="flex size-full items-center justify-center bg-stone-100 text-stone-400 dark:bg-[#18181b] dark:text-[#71717a]">
+              <span class="font-display text-sm tracking-widest uppercase">
+                Red Sun Japan
+              </span>
+            </div>
+          )}
+          <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-stone-900/40 via-transparent to-transparent opacity-40 transition-opacity duration-300 group-hover:opacity-20 dark:from-[#121214] dark:via-black/20 dark:opacity-60 dark:group-hover:opacity-30" />
+        </a>
+
+        <div class="mt-4">
+          <div class="flex items-center gap-2">
+            <span class="font-mono text-[11px] font-bold uppercase tracking-wider text-[#b91c1c] dark:text-[#ef4444]">
+              {primaryTag}
+            </span>
+          </div>
+
+          <a href={postUrl} class="mt-2 block focus-visible:outline-none">
+            <Heading
+              transition:name={toTransitionName(id)}
+              class="font-display text-lg font-bold leading-snug tracking-tight text-stone-900 transition-colors duration-200 group-hover:text-[#b91c1c] dark:text-[#e2ded7] dark:group-hover:text-[#ef4444] sm:text-xl line-clamp-2"
+            >
+              {title}
+            </Heading>
+          </a>
+
+          <p class="mt-2 text-xs leading-relaxed text-stone-600 dark:text-[#a1a1aa] line-clamp-2">
+            {description}
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-4 flex items-center gap-2 border-t border-[#ded7cb]/80 pt-3 font-mono text-[11px] text-stone-500 dark:border-[#27272a]/60 dark:text-[#71717a]">
+        <Datetime {...props} />
+        <span>•</span>
+        <span>{readingTime}</span>
+      </div>
+    </article>
+  ) : (
+    <li
+      class:list={[
+        "my-6",
+        coverSrc ? "flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-6" : "",
+      ]}
+    >
+      {coverSrc && (
+        <a
+          href={postUrl}
+          tabindex="-1"
+          aria-hidden="true"
+          class="group relative aspect-video w-full shrink-0 overflow-hidden rounded-md border border-[#ded7cb] bg-stone-100 sm:w-52 md:w-60 dark:border-[#27272a] dark:bg-[#161619]"
+        >
+          <img
+            src={coverSrc}
+            alt=""
+            loading="lazy"
+            decoding="async"
+            class="size-full object-cover transition-all duration-500 group-hover:scale-105 group-hover:brightness-105 dark:group-hover:brightness-110"
+          />
+          <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-stone-900/30 via-transparent to-transparent opacity-40 transition-opacity duration-300 group-hover:opacity-20 dark:from-black/60 dark:via-black/20 dark:opacity-60 dark:group-hover:opacity-30" />
+        </a>
+      )}
+      <div class="flex-1">
+        <a
+          href={postUrl}
+          class:list={[
+            "inline-block text-lg font-medium text-stone-900 transition-colors hover:text-[#b91c1c] dark:text-[#e2ded7] dark:hover:text-[#ef4444]",
+            "decoration-dashed underline-offset-4 hover:underline",
+            "focus-visible:no-underline focus-visible:underline-offset-0",
+          ]}
+        >
+          <Heading transition:name={toTransitionName(id)} class="font-display">
+            {title}
+          </Heading>
+        </a>
+        <div class="flex items-center gap-2 text-xs text-stone-500 dark:text-[#71717a]">
+          <Datetime {...props} />
+          <span>•</span>
+          <span>{readingTime}</span>
+        </div>
+        <p class="mt-1 line-clamp-3 text-sm text-stone-600 dark:text-[#a1a1aa]">{description}</p>
+      </div>
+    </li>
+  )
+}

@@ -1,28 +1,57 @@
 ---
 import { getCollection } from "astro:content";
 import { getRelativeLocaleUrl } from "astro:i18n";
-import IconRss from "@/assets/icons/IconRss.svg";
 import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
-import Socials from "@/components/Socials.astro";
 import Card from "@/components/Card.astro";
+import YouTubeCard from "@/components/YouTubeCard.astro";
+import Datetime from "@/components/Datetime.astro";
 import LinkButton from "@/components/LinkButton.astro";
 import { getSortedPosts } from "@/utils/getSortedPosts";
-import { useTranslations } from "@/i18n";
+import { getPostUrl } from "@/utils/getPostPaths";
+import { getAssetPath } from "@/utils/withBase";
+import { getReadingTime } from "@/utils/getReadingTime";
+import { toTransitionName } from "@/utils/toTransitionName";
 import config from "@/config";
 
-const { socials, posts: postsConfig } = config;
-
 const locale = Astro.currentLocale ?? config.site.lang;
-const t = useTranslations(locale);
 
 const posts = await getCollection("posts");
 const sortedPosts = getSortedPosts(posts);
+
+// Identify Hero Article: most recent featured post, fallback to most recent post
 const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
-const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
+const heroPost = featuredPosts[0] ?? sortedPosts[0];
+
+// Grid posts: exclude the hero post to avoid duplicate presentation
+const gridPosts = sortedPosts.filter(p => p.id !== heroPost?.id);
+
 const homePath = getRelativeLocaleUrl(locale, "");
+
+// Hero Post Data
+const heroData = heroPost?.data;
+const heroUrl = heroPost
+  ? getPostUrl(heroPost.id, heroPost.filePath, locale)
+  : "#";
+const rawHeroCover = heroData?.heroImage ?? heroData?.ogImage;
+const heroCoverSrc =
+  typeof rawHeroCover === "string"
+    ? getAssetPath(rawHeroCover)
+    : rawHeroCover && typeof rawHeroCover === "object" && "src" in rawHeroCover
+      ? (rawHeroCover.src as string)
+      : undefined;
+const heroPrimaryTag = heroData?.tags?.[0] ?? "Chronicle";
+const heroReadingTime = heroPost ? getReadingTime(heroPost.body) : "";
+
+const categories = [
+  { id: "all", label: "All" },
+  { id: "samurai", label: "Samurai" },
+  { id: "yokai", label: "Yokai" },
+  { id: "kaidan", label: "Kaidan" },
+  { id: "history", label: "History" },
+];
 ---
 
 <Layout>
@@ -31,108 +60,245 @@ const homePath = getRelativeLocaleUrl(locale, "");
     id="main-content"
     data-layout="index"
     data-home-path={homePath}
-    class="app-layout my-1"
+    class="app-layout py-8 sm:py-12"
   >
-    <section id="hero" class="border-border border-b pt-8 pb-6">
-      <h1 class="my-4 inline-block text-4xl font-bold sm:my-8 sm:text-5xl">
-        Mingalaba
-      </h1>
-      <a
-        target="_blank"
-        href={`${import.meta.env.BASE_URL.replace(/\/?$/, "/")}rss.xml`}
-        class="inline-block"
-        aria-label="RSS Feed"
-        title="RSS Feed"
-      >
-        <IconRss
-          width={20}
-          height={20}
-          class="stroke-accent scale-125 stroke-3 rtl:-rotate-90"
-        />
-        <span class="sr-only">RSS Feed</span>
-      </a>
+    {
+      heroPost && (
+        <section id="hero-article" class="mb-12 sm:mb-16">
+          <div class="group relative overflow-hidden rounded-2xl border border-[#ded7cb] bg-white p-5 sm:p-6 lg:p-8 shadow-sm shadow-stone-900/5 transition-all duration-300 hover:border-[#b91c1c]/50 hover:shadow-2xl hover:shadow-black/10 dark:border-[#27272a] dark:bg-[#161619] dark:shadow-none dark:hover:shadow-black/70">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
+              <!-- 60% Image Column (7 cols on lg) -->
+              <div class="lg:col-span-7">
+                <a
+                  href={heroUrl}
+                  tabindex="-1"
+                  aria-hidden="true"
+                  class="relative aspect-video w-full block overflow-hidden rounded-xl bg-stone-100 dark:bg-[#121214]"
+                >
+                  {heroCoverSrc ? (
+                    <img
+                      src={heroCoverSrc}
+                      alt={heroData.title}
+                      loading="eager"
+                      fetchpriority="high"
+                      decoding="async"
+                      class="size-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    />
+                  ) : (
+                    <div class="flex size-full items-center justify-center bg-stone-100 text-stone-400 dark:bg-[#18181b] dark:text-[#71717a]">
+                      <span class="font-display text-base tracking-widest uppercase">
+                        Red Sun Japan
+                      </span>
+                    </div>
+                  )}
+                  <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-stone-900/40 via-transparent to-transparent opacity-40 transition-opacity duration-300 group-hover:opacity-20 dark:from-[#121214] dark:via-black/25 dark:opacity-60 dark:group-hover:opacity-30" />
+                </a>
+              </div>
 
-      <p>
-        AstroPaper is a minimal, responsive, accessible and SEO-friendly Astro
-        blog theme. This theme follows best practices and provides accessibility
-        out of the box. Light and dark mode are supported by default. Moreover,
-        additional color schemes can also be configured.
-      </p>
-      <p class="mt-2">
-        Read the blog posts or check{" "}
-        <LinkButton
-          class="hover:text-accent underline decoration-dashed underline-offset-4"
-          href="https://github.com/satnaing/astro-paper#readme"
-        >
-          README
-        </LinkButton>{" "}
-        for more info.
-      </p>
-      {
-        socials.length > 0 && (
-          <div class="mt-4 flex max-sm:flex-col sm:items-center">
-            <div class="me-2 mb-1 whitespace-nowrap sm:mb-0">
-              {t.home.socialLinks}:
+              <!-- 40% Text Content Column (5 cols on lg) -->
+              <div class="lg:col-span-5 flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center gap-2">
+                    <span class="inline-flex items-center gap-1.5 rounded-full border border-red-200 bg-red-50 px-3 py-1 font-mono text-xs font-bold uppercase tracking-wider text-[#b91c1c] dark:border-[#b91c1c]/40 dark:bg-[#b91c1c]/15 dark:text-[#ef4444]">
+                      <span class="size-1.5 rounded-full bg-[#b91c1c] dark:bg-[#ef4444] animate-pulse" />
+                      {heroPrimaryTag}
+                    </span>
+                    <span class="font-mono text-xs text-stone-500 dark:text-[#71717a] uppercase tracking-wider">
+                      Featured Chronicle
+                    </span>
+                  </div>
+
+                  <a href={heroUrl} class="mt-4 block focus-visible:outline-none">
+                    <h2
+                      transition:name={toTransitionName(heroPost.id)}
+                      class="font-display text-2xl sm:text-3xl lg:text-3xl xl:text-4xl font-bold tracking-tight text-stone-900 transition-colors duration-200 hover:text-[#b91c1c] dark:text-[#e2ded7] dark:hover:text-[#ef4444] leading-tight"
+                    >
+                      {heroData.title}
+                    </h2>
+                  </a>
+
+                  <p class="mt-4 text-sm sm:text-base leading-relaxed text-stone-600 dark:text-[#a1a1aa] line-clamp-3 lg:line-clamp-4">
+                    {heroData.description}
+                  </p>
+                </div>
+
+                <div class="mt-6 flex flex-wrap items-center justify-between gap-4 border-t border-[#ded7cb]/80 pt-4 dark:border-[#27272a]/60">
+                  <div class="flex items-center gap-2 font-mono text-xs text-stone-500 dark:text-[#71717a]">
+                    <Datetime {...heroData} />
+                    <span>•</span>
+                    <span>{heroReadingTime}</span>
+                  </div>
+
+                  <a
+                    href={heroUrl}
+                    class="inline-flex items-center gap-2 rounded-lg bg-[#b91c1c] px-4 py-2 font-mono text-xs font-bold uppercase tracking-wider text-white shadow transition-all duration-200 hover:bg-[#9e1b1b] hover:shadow-lg hover:shadow-[#b91c1c]/25 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#b91c1c]"
+                  >
+                    <span>Read Chronicle</span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="transition-transform duration-200 group-hover:translate-x-0.5"
+                    >
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                      <path d="M5 12l14 0" />
+                      <path d="M13 18l6 -6" />
+                      <path d="M13 6l6 6" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
             </div>
-            <Socials />
           </div>
-        )
-      }
+        </section>
+      )
+    }
+
+    <!-- Category Filter Bar -->
+    <section id="category-filter-section" class="mb-10">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-y border-[#ded7cb] py-4 dark:border-[#27272a]/80">
+        <div class="flex items-center gap-2">
+          <span class="font-display text-sm font-bold uppercase tracking-widest text-stone-900 dark:text-[#e2ded7]">
+            Chronicles
+          </span>
+          <span class="text-xs text-stone-500 font-mono dark:text-[#71717a]">/ Filter by lore</span>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-2" id="category-pills">
+          {categories.map((cat, idx) => (
+            <button
+              type="button"
+              data-filter={cat.id}
+              class:list={[
+                "category-pill rounded-full px-4 py-1.5 font-mono text-xs font-medium uppercase tracking-wider transition-all duration-200 border",
+                idx === 0
+                  ? "bg-[#b91c1c] text-white border-[#b91c1c] shadow-md shadow-[#b91c1c]/20"
+                  : "bg-[#f4f1ea] text-stone-600 border-[#ded7cb] hover:border-[#b91c1c]/50 hover:text-stone-900 dark:bg-[#1f1f23] dark:text-[#928f88] dark:border-[#27272a] dark:hover:text-[#e2ded7]",
+              ]}
+            >
+              {cat.label}
+            </button>
+          ))}
+        </div>
+      </div>
     </section>
 
-    {
-      featuredPosts.length > 0 && (
-        <section
-          id="featured"
-          class:list={[
-            "pt-12 pb-6",
-            { "border-border border-b": recentPosts.length > 0 },
-          ]}
+    <!-- 3-Column Editorial Grid with injected YouTube Card -->
+    <section id="articles-section" class="mb-16">
+      <div
+        id="articles-grid"
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
+      >
+        {
+          gridPosts.map((post, idx) => (
+            <>
+              <Card variant="h3" layout="grid" {...post} />
+              {idx === 1 && <YouTubeCard />}
+            </>
+          ))
+        }
+        {gridPosts.length < 2 && <YouTubeCard />}
+      </div>
+
+      <div
+        id="empty-filter-state"
+        class="hidden rounded-xl border border-dashed border-[#ded7cb] bg-stone-50/60 py-16 text-center my-6 dark:border-[#27272a] dark:bg-transparent"
+      >
+        <p class="font-display text-xl text-stone-900 dark:text-[#e2ded7]">
+          No chronicles found for this lore.
+        </p>
+        <p class="font-mono text-xs text-stone-500 dark:text-[#928f88] mt-2">
+          Select "All" to view the complete historical compendium.
+        </p>
+      </div>
+
+      <div class="mt-14 text-center">
+        <LinkButton
+          href={getRelativeLocaleUrl(locale, "posts")}
+          class="inline-flex items-center gap-2 rounded-lg border border-[#ded7cb] bg-white px-6 py-3 font-mono text-xs font-bold uppercase tracking-wider text-stone-900 shadow-sm transition-all duration-200 hover:border-[#b91c1c] hover:text-[#b91c1c] hover:shadow-lg hover:shadow-black/10 dark:border-[#27272a] dark:bg-[#161619] dark:text-[#e2ded7] dark:hover:text-[#ef4444] dark:hover:shadow-black/60"
         >
-          <h2 class="text-2xl font-semibold tracking-wide">
-            {t.home.featured}
-          </h2>
-          <ul>
-            {featuredPosts.map(data => (
-              <Card variant="h3" {...data} />
-            ))}
-          </ul>
-        </section>
-      )
-    }
-
-    {
-      recentPosts.length > 0 && (
-        <section id="recent-posts" class="pt-12 pb-6">
-          <h2 class="text-2xl font-semibold tracking-wide">
-            {t.home.recentPosts}
-          </h2>
-          <ul>
-            {recentPosts.slice(0, postsConfig.perIndex).map(data => (
-              <Card variant="h3" {...data} />
-            ))}
-          </ul>
-        </section>
-      )
-    }
-
-    <div class="my-8 text-center">
-      <LinkButton href={getRelativeLocaleUrl(locale, "posts")}>
-        {t.home.allPosts}
-        <IconArrowRight class="inline-block rtl:-rotate-180" />
-      </LinkButton>
-    </div>
+          <span>Explore All Chronicles</span>
+          <IconArrowRight class="inline-block size-4 rtl:-rotate-180" />
+        </LinkButton>
+      </div>
+    </section>
   </main>
   <Footer />
 </Layout>
 
 <script>
-  document.addEventListener("astro:page-load", () => {
-    const indexLayout = (document.querySelector("#main-content") as HTMLElement)
-      ?.dataset;
+  function initCategoryFilters() {
+    const pills = document.querySelectorAll<HTMLButtonElement>(".category-pill");
+    const cards = document.querySelectorAll<HTMLElement>("[data-post-card]");
+    const emptyState = document.getElementById("empty-filter-state");
+
+    if (!pills.length) return;
+
+    const activeClasses = [
+      "bg-[#b91c1c]",
+      "text-white",
+      "border-[#b91c1c]",
+      "shadow-md",
+      "shadow-[#b91c1c]/20",
+    ];
+    const inactiveClasses = [
+      "bg-[#f4f1ea]",
+      "text-stone-600",
+      "border-[#ded7cb]",
+      "hover:border-[#b91c1c]/50",
+      "hover:text-stone-900",
+      "dark:bg-[#1f1f23]",
+      "dark:text-[#928f88]",
+      "dark:border-[#27272a]",
+      "dark:hover:text-[#e2ded7]",
+    ];
+
+    pills.forEach(pill => {
+      pill.addEventListener("click", () => {
+        const filter = pill.getAttribute("data-filter")?.toLowerCase() || "all";
+
+        // Update pill active styles
+        pills.forEach(p => {
+          p.classList.remove(...activeClasses);
+          p.classList.add(...inactiveClasses);
+        });
+        pill.classList.remove(...inactiveClasses);
+        pill.classList.add(...activeClasses);
+
+        let visibleCount = 0;
+        cards.forEach(card => {
+          const rawTags = card.getAttribute("data-tags") || "";
+          const cardTags = rawTags.toLowerCase().split(" ");
+          if (filter === "all" || cardTags.includes(filter)) {
+            card.classList.remove("hidden");
+            visibleCount++;
+          } else {
+            card.classList.add("hidden");
+          }
+        });
+
+        if (emptyState) {
+          if (visibleCount === 0) {
+            emptyState.classList.remove("hidden");
+          } else {
+            emptyState.classList.add("hidden");
+          }
+        }
+      });
+    });
+
+    const indexLayout = (document.querySelector("#main-content") as HTMLElement)?.dataset;
     const baseRoot = import.meta.env.BASE_URL.replace(/\/?$/, "/");
     if (indexLayout?.layout) {
       sessionStorage.setItem("backUrl", indexLayout.homePath ?? baseRoot);
     }
-  });
+  }
+
+  document.addEventListener("astro:page-load", initCategoryFilters);
 </script>

@@ -18,28 +18,38 @@ const t = useTranslations(Astro.currentLocale);
 {
   page.lastPage > 1 && (
     <nav
-      class="mt-auto mb-8 flex justify-center gap-4"
+      class="my-8 flex items-center justify-center gap-4 font-mono text-xs text-stone-700 dark:text-[#a1a1aa]"
       role="navigation"
       aria-label="Pagination Navigation"
     >
       <LinkButton
         disabled={!page.url.prev}
         href={page.url.prev as string}
-        class:list={["select-none", { "opacity-50": !page.url.prev }]}
+        class:list={[
+          "select-none rounded-lg border border-[#ded7cb] bg-white px-3.5 py-2 font-mono text-xs font-semibold uppercase tracking-wider text-stone-800 shadow-sm transition-all duration-200 hover:border-[#b91c1c] hover:text-[#b91c1c] dark:border-[#27272a] dark:bg-[#161619] dark:text-[#e2ded7] dark:hover:text-[#ef4444]",
+          { "pointer-events-none opacity-40": !page.url.prev },
+        ]}
         aria-label={t.a11y.goToPreviousPage}
       >
-        <IconArrowLeft class="inline-block rtl:rotate-180" />
-        {t.pagination.prev}
+        <IconArrowLeft class="inline-block size-4 rtl:rotate-180" />
+        <span>{t.pagination.prev}</span>
       </LinkButton>
-      {page.currentPage} / {page.lastPage}
+
+      <span class="font-semibold text-stone-900 dark:text-[#e2ded7]">
+        {page.currentPage} / {page.lastPage}
+      </span>
+
       <LinkButton
         disabled={!page.url.next}
         href={page.url.next as string}
-        class:list={["select-none", { "opacity-50": !page.url.next }]}
+        class:list={[
+          "select-none rounded-lg border border-[#ded7cb] bg-white px-3.5 py-2 font-mono text-xs font-semibold uppercase tracking-wider text-stone-800 shadow-sm transition-all duration-200 hover:border-[#b91c1c] hover:text-[#b91c1c] dark:border-[#27272a] dark:bg-[#161619] dark:text-[#e2ded7] dark:hover:text-[#ef4444]",
+          { "pointer-events-none opacity-40": !page.url.next },
+        ]}
         aria-label={t.a11y.goToNextPage}
       >
-        {t.pagination.next}
-        <IconArrowRight class="inline-block rtl:rotate-180" />
+        <span>{t.pagination.next}</span>
+        <IconArrowRight class="inline-block size-4 rtl:rotate-180" />
       </LinkButton>
     </nav>
   )

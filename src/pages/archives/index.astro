@@ -24,7 +24,6 @@ const t = useTranslations(locale);
 
 const posts = await getCollection("posts");
 const filteredPosts = posts.filter(postFilter);
-const monthFormatter = new Intl.DateTimeFormat(locale, { month: "long" });
 ---
 
 <Layout title={`${t.pages.archivesTitle} | ${config.site.title}`}>
@@ -41,45 +40,27 @@ const monthFormatter = new Intl.DateTimeFormat(locale, { month: "long" });
       )
         .sort(([yearA], [yearB]) => Number(yearB) - Number(yearA))
         .map(([year, yearGroup]) => (
-          <div>
-            <span class="text-2xl font-bold">{year}</span>
-            <sup class="text-muted-foreground text-sm">{yearGroup.length}</sup>
-            {Object.entries(
-              getPostsByGroupCondition(
-                yearGroup,
-                post => post.data.pubDatetime.getMonth() + 1
-              )
-            )
-              .sort(([monthA], [monthB]) => Number(monthB) - Number(monthA))
-              .map(([month, monthGroup]) => (
-                <div class="flex flex-col sm:flex-row">
-                  <div class="mt-6 min-w-36 text-lg sm:my-6">
-                    <span class="font-bold">
-                      {monthFormatter.format(
-                        new Date(2000, Number(month) - 1, 1)
-                      )}
-                    </span>
-                    <sup class="text-muted-foreground text-xs">
-                      {monthGroup.length}
-                    </sup>
-                  </div>
-                  <ul>
-                    {monthGroup
-                      .sort(
-                        (a, b) =>
-                          Math.floor(
-                            new Date(b.data.pubDatetime).getTime() / 1000
-                          ) -
-                          Math.floor(
-                            new Date(a.data.pubDatetime).getTime() / 1000
-                          )
-                      )
-                      .map(data => (
-                        <Card {...data} />
-                      ))}
-                  </ul>
-                </div>
-              ))}
+          <div class="mb-14">
+            <div class="flex items-baseline gap-2 border-b border-[#ded7cb] pb-3 mb-8 dark:border-[#27272a]">
+              <span class="font-display text-3xl font-bold tracking-tight text-stone-900 dark:text-[#e2ded7]">
+                {year}
+              </span>
+              <sup class="font-mono text-xs font-semibold text-[#b91c1c] dark:text-[#ef4444]">
+                {yearGroup.length} {yearGroup.length === 1 ? "chronicle" : "chronicles"}
+              </sup>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+              {yearGroup
+                .sort(
+                  (a, b) =>
+                    Math.floor(new Date(b.data.pubDatetime).getTime() / 1000) -
+                    Math.floor(new Date(a.data.pubDatetime).getTime() / 1000)
+                )
+                .map(data => (
+                  <Card variant="h3" layout="grid" {...data} />
+                ))}
+            </div>
           </div>
         ))
     }

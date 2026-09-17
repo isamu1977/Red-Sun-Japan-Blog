@@ -1,0 +1,152 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Breadcrumb from "@/components/Breadcrumb.astro";
+import Main from "@/components/Main.astro";
+import Footer from "@/components/Footer.astro";
+import config from "@/config";
+
+const pageTitle = "Privacy Policy & Legal Governance";
+const pageDescription =
+  "Comprehensive privacy policy, international data compliance (GDPR, CCPA, LGPD, APPI), public domain art disclaimers, and DMCA notice for Red Sun Japan.";
+---
+
+<Layout
+  title={`${pageTitle} | ${config.site.title}`}
+  description={pageDescription}
+>
+  <Header />
+
+  <Breadcrumb />
+
+  <Main pageTitle={pageTitle} class="app-prose">
+    <p class="lead italic text-[#928f88]">
+      Last Updated: September 16, 2026 | Effective Date: September 16, 2026
+    </p>
+
+    <div class="not-prose my-6 rounded-lg border border-[#27272a] bg-[#161619] p-4 text-xs leading-relaxed text-[#928f88]">
+      <strong class="text-[#e2ded7]">Governance Summary:</strong> This policy outlines how <strong>Red Sun Japan</strong> adheres to international digital privacy regulations including the European Union General Data Protection Regulation (<strong>GDPR</strong>), UK Data Protection Act (<strong>UK DPA</strong>), California Consumer Privacy Act / California Privacy Rights Act (<strong>CCPA/CPRA</strong>), Brazil's Lei Geral de Proteção de Dados (<strong>LGPD</strong>), and Japan's Act on the Protection of Personal Information (<strong>APPI</strong>).
+    </div>
+
+    <hr />
+
+    <h2>1. Data Controller Identification</h2>
+    <p>
+      The data controller responsible for the processing of data collected through this website is:
+    </p>
+    <ul>
+      <li><strong>Entity:</strong> Red Sun Japan Editorial Team</li>
+      <li><strong>Official Contact Email:</strong> <a href="mailto:privacy@redsunjapan.com">privacy@redsunjapan.com</a></li>
+      <li><strong>Official Channel:</strong> <a href="https://www.youtube.com/@redsunjapan" target="_blank" rel="noopener noreferrer">YouTube: @redsunjapan</a></li>
+    </ul>
+
+    <h2>2. International Legal Frameworks & User Rights</h2>
+    <p>
+      We recognize and uphold the privacy rights of all global visitors, maintaining regional compliance across multiple international jurisdictions:
+    </p>
+
+    <h3>A. European Union (GDPR) & United Kingdom (UK DPA)</h3>
+    <p>
+      For visitors within the European Economic Area (EEA) and the United Kingdom, processing of personal data is conducted strictly under lawful bases defined in Article 6 of the GDPR:
+    </p>
+    <ul>
+      <li><strong>Legitimate Interests (Art. 6(1)(f)):</strong> Essential site operations, security monitoring, defense against malicious traffic, and session state persistence.</li>
+      <li><strong>Consent (Art. 6(1)(a)):</strong> Non-essential analytics and embedded marketing media are loaded <em>only after prior, explicit, affirmative consent</em>.</li>
+    </ul>
+    <p>
+      Under Chapter III of the GDPR, EEA and UK citizens hold the right to request <strong>Access</strong> (Art. 15), <strong>Rectification</strong> (Art. 16), <strong>Erasure ("Right to be Forgotten")</strong> (Art. 17), <strong>Restriction of Processing</strong> (Art. 18), <strong>Data Portability</strong> (Art. 20), and to <strong>Object to Processing</strong> (Art. 21). You may exercise these rights at any time by emailing <a href="mailto:privacy@redsunjapan.com">privacy@redsunjapan.com</a>.
+    </p>
+
+    <h3>B. California Residents (CCPA / CPRA)</h3>
+    <p>
+      Under the California Consumer Privacy Act as amended by the California Privacy Rights Act:
+    </p>
+    <ul>
+      <li><strong>Do Not Sell or Share My Personal Information:</strong> We do <em>not</em> sell, rent, or trade your personal information to third parties, nor do we disclose personal data for cross-context behavioral advertising.</li>
+      <li><strong>Notice at Collection:</strong> We collect only minimal technical identifiers (such as anonymized IP fragments, browser agent headers, and functional local storage).</li>
+      <li><strong>Non-Discrimination:</strong> Exercising your privacy rights will never result in differential pricing, denied access, or degraded service on our platform.</li>
+    </ul>
+
+    <h3>C. Brazil (Lei Geral de Proteção de Dados - LGPD)</h3>
+    <p>
+      In accordance with Brazilian Law No. 13.709/2018 (LGPD), Brazilian holders of personal data may request confirmation of data processing existence, access to data, correction of incomplete or outdated records, anonymization, and unconditional revocation of consent pursuant to Article 18.
+    </p>
+
+    <h3>D. Japan (Act on the Protection of Personal Information - APPI)</h3>
+    <p>
+      In accordance with Japan's APPI (個人情報の保護に関する法律), we specify the purpose of data collection transparently, maintain strict measures to prevent unauthorized data leakage, and honor requests for disclosure, correction, and suspension of use without unjustified delay.
+    </p>
+
+    <h2>3. Cookies, Local Storage & Granular Consent</h2>
+    <p>
+      We implement a <strong>three-tier granular consent architecture</strong>. Non-essential cookies and trackers remain strictly suppressed until authorized:
+    </p>
+    <ol>
+      <li>
+        <strong>Strictly Necessary:</strong> Essential for cryptographic state, CSRF protection, remembering your visual theme (Dark Mode preference), and storing your cookie preferences. Always active.
+      </li>
+      <li>
+        <strong>Analytics & Telemetry:</strong> Aggregated, anonymized readership statistics that allow us to evaluate article engagement and optimize site speed without profiling individual visitors. Disabled by default.
+      </li>
+      <li>
+        <strong>Marketing & Third-Party Embeds:</strong> External tags and advertising pixels (such as Google AdSense or Pinterest tags) that evaluate media engagement. Disabled by default.
+      </li>
+    </ol>
+    <p>
+      <strong>Permanent Right of Revocation:</strong> You can review, modify, or completely revoke your cookie consent selections at any time by clicking the <strong class="text-[#e2ded7]">"Manage Cookie Preferences"</strong> button located in the footer of any page.
+    </p>
+
+    <h2>4. Third-Party Data Processors & Infrastructure</h2>
+    <p>
+      We partner only with reliable service providers operating under rigorous data protection agreements:
+    </p>
+    <ul>
+      <li>
+        <strong>Infrastructure & Server Hosting:</strong> Self-hosted cloud architecture orchestrated via Coolify on private, hardened virtual instances. Server logs record anonymized IP addresses exclusively for threat mitigation and DDoS prevention, retained for no more than 30 days.
+      </li>
+      <li>
+        <strong>Video & Media Embeds:</strong> Video features and documentary excerpts are embedded utilizing Google LLC’s <strong>YouTube Privacy-Enhanced Mode</strong> (<code class="text-xs bg-[#222227] px-1 py-0.5 rounded">youtube-nocookie.com</code>). This configuration prevents YouTube from setting tracking cookies on your device until you actively click to play the media.
+      </li>
+    </ul>
+
+    <h2>5. Public Domain Visual Artworks, Copyright & DMCA Disclaimer</h2>
+    <p>
+      The visual identity of Red Sun Japan honors classical Japanese history. We maintain absolute transparency regarding source materials and intellectual property:
+    </p>
+    <ul>
+      <li>
+        <strong>Public Domain Historical Works:</strong> Historical Japanese woodblock prints (<em>ukiyo-e</em>), battle scrolls (<em>emakimono</em>), calligraphic manuscripts, and Edo/Meiji-period illustrations published on this site (including masterworks by Katsushika Hokusai, Tsukioka Yoshitoshi, Utagawa Kuniyoshi, and anonymous temple artisans) are in the <strong>worldwide public domain</strong>. These assets are curated from open digital heritage archives, including the National Diet Library of Japan, Tokyo National Museum, Aozora Bunko, Library of Congress, Metropolitan Museum of Art, and Wikimedia Commons.
+      </li>
+      <li>
+        <strong>Original Editorial Property:</strong> All original written narrative prose, documentary scripts, contemporary research syntheses, audio productions, and Red Sun Japan logos/branding are the exclusive copyrighted property of Red Sun Japan. All rights reserved.
+      </li>
+      <li>
+        <strong>DMCA & Copyright Takedown Protocol:</strong> If you represent an institution or estate and believe any archival asset hosted on this blog violates intellectual property laws, please send an immediate takedown notification containing exact URL citations to <a href="mailto:privacy@redsunjapan.com">privacy@redsunjapan.com</a>. Our legal and editorial staff will review and expeditiously remove the disputed content within 48 business hours.
+      </li>
+    </ul>
+
+    <h2>6. FTC Affiliate & Commercial Disclosure</h2>
+    <p>
+      In compliance with Federal Trade Commission (FTC) guidelines (16 CFR Part 255):
+    </p>
+    <p>
+      Articles on Red Sun Japan may occasionally include curated affiliate links (such as historical literature, authentic Japanese craft tools, or relevant period books). If you choose to make a purchase through these links, Red Sun Japan may earn a small referral commission at <strong>no additional cost to you</strong>. We only endorse literature, historical references, and artifacts that uphold the scholarly and artistic standards of our channel.
+    </p>
+
+    <h2>7. Policy Revisions & Legal Inquiries</h2>
+    <p>
+      We reserve the right to amend this governance document to mirror evolving global privacy laws or technical advancements. Substantive updates will be recorded with an updated timestamp at the head of this policy.
+    </p>
+    <p>
+      For any inquiries, requests for data erasure, or legal notices, contact our privacy compliance officer directly at:
+    </p>
+    <p class="font-mono text-sm text-[#e2ded7]">
+      Red Sun Japan Editorial Team<br />
+      Attn: Privacy & Data Protection Compliance<br />
+      Email: <a href="mailto:privacy@redsunjapan.com" class="text-accent">privacy@redsunjapan.com</a><br />
+      Official Hub: <a href="https://www.youtube.com/@redsunjapan" target="_blank" rel="noopener noreferrer">youtube.com/@redsunjapan</a>
+    </p>
+  </Main>
+
+  <Footer />
+</Layout>

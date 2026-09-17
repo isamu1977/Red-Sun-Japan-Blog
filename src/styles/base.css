@@ -1,0 +1,26 @@
+/* ==========================================================================
+   Sumi-e & Dark Folklore Theme - Red Sun Japan
+   ========================================================================== */
+
+/* Dark theme values (Prioritized visual preference) */
+:root,
+[data-theme="dark"] {
+  --background: #121214;
+  --foreground: #e2ded7;
+  --accent: #b91c1c;
+  --accent-foreground: #ffffff;
+  --muted: #1e1e24;
+  --muted-foreground: #8f8b84;
+  --border: #26262b;
+}
+
+/* Light theme values (Aged Rice Paper Sumi-e aesthetic) */
+[data-theme="light"] {
+  --background: #f4f0e8;
+  --foreground: #1a1918;
+  --accent: #9e1b1b;
+  --accent-foreground: #ffffff;
+  --muted: #e4dfd5;
+  --muted-foreground: #6b665f;
+  --border: #dcd6cb;
+}

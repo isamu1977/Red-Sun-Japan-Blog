@@ -29,12 +29,12 @@ const t = useTranslations(locale);
   <Breadcrumb />
 
   <Main pageTitle={t.pages.postsTitle} pageDesc={t.pages.postsDesc}>
-    <ul>
-      {page.data.map(data => <Card {...data} />)}
-    </ul>
-  </Main>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12">
+      {page.data.map(data => <Card variant="h3" layout="grid" {...data} />)}
+    </div>
 
-  <Pagination {page} />
+    <Pagination {page} />
+  </Main>
 
   <Footer noMarginTop={page.lastPage > 1} />
 </Layout>
