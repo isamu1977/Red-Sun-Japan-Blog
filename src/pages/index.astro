@@ -6,6 +6,7 @@ import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import Card from "@/components/Card.astro";
+import TrendingSidebar from "@/components/TrendingSidebar.astro";
 import YouTubeCard from "@/components/YouTubeCard.astro";
 import Datetime from "@/components/Datetime.astro";
 import LinkButton from "@/components/LinkButton.astro";
@@ -25,8 +26,17 @@ const sortedPosts = getSortedPosts(posts);
 const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
 const heroPost = featuredPosts[0] ?? sortedPosts[0];
 
-// Grid posts: exclude the hero post to avoid duplicate presentation
-const gridPosts = sortedPosts.filter(p => p.id !== heroPost?.id);
+// Identify Trending Chronicles: next 3 chronologically most recent after the hero
+const trendingPosts = sortedPosts
+  .filter(p => p.id !== heroPost?.id)
+  .slice(0, 3);
+
+// Grid posts: exclude hero + trending to avoid duplicate presentation
+const excludedIds = new Set<string>([
+  heroPost?.id ?? "",
+  ...trendingPosts.map(p => p.id),
+]);
+const gridPosts = sortedPosts.filter(p => !excludedIds.has(p.id));
 
 const homePath = getRelativeLocaleUrl(locale, "");
 
@@ -65,10 +75,16 @@ const categories = [
     {
       heroPost && (
         <section id="hero-article" class="mb-12 sm:mb-16">
-          <div class="group relative overflow-hidden rounded-2xl border border-[#ded7cb] bg-white p-5 sm:p-6 lg:p-8 shadow-sm shadow-stone-900/5 transition-all duration-300 hover:border-[#b91c1c]/50 hover:shadow-2xl hover:shadow-black/10 dark:border-[#27272a] dark:bg-[#161619] dark:shadow-none dark:hover:shadow-black/70">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
-              <!-- 60% Image Column (7 cols on lg) -->
-              <div class="lg:col-span-7">
+          <div class="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-stretch">
+            <!-- Main column: Featured Chronicle (8 of 12 on lg) -->
+            <div class="lg:col-span-8">
+              <article
+                id="hero-feature-card"
+                class="group relative h-full overflow-hidden rounded-2xl border border-[#ded7cb] bg-white p-5 shadow-sm shadow-stone-900/5 transition-all duration-300 hover:border-[#b91c1c]/50 hover:shadow-2xl hover:shadow-black/10 sm:p-6 lg:p-8 dark:border-[#27272a] dark:bg-[#161619] dark:shadow-none dark:hover:shadow-black/70"
+              >
+                <div class="grid h-full grid-cols-1 items-stretch gap-6 lg:grid-cols-12 lg:gap-8">
+                  <!-- Image Column (7 of 12 inside the main col) -->
+                  <div class="lg:col-span-7">
                 <a
                   href={heroUrl}
                   tabindex="-1"
@@ -154,6 +170,13 @@ const categories = [
                   </a>
                 </div>
               </div>
+                </div>
+              </article>
+            </div>
+
+            <!-- Sidebar column: Trending Chronicles (4 of 12 on lg) -->
+            <div class="lg:col-span-4">
+              <TrendingSidebar posts={trendingPosts} />
             </div>
           </div>
         </section>

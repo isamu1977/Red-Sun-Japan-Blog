@@ -1,0 +1,109 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { getPostUrl } from "@/utils/getPostPaths";
+import { getAssetPath } from "@/utils/withBase";
+import { getReadingTime } from "@/utils/getReadingTime";
+import Datetime from "./Datetime.astro";
+
+type Props = {
+  posts: CollectionEntry<"posts">[];
+};
+
+const { posts } = Astro.props;
+
+const items = posts.slice(0, 3).map(post => {
+  const rawCover = post.data.heroImage ?? post.data.ogImage;
+  const coverSrc =
+    typeof rawCover === "string"
+      ? getAssetPath(rawCover)
+      : rawCover && typeof rawCover === "object" && "src" in rawCover
+        ? (rawCover.src as string)
+        : undefined;
+
+  return {
+    id: post.id,
+    url: getPostUrl(post.id, post.filePath, Astro.currentLocale),
+    title: post.data.title,
+    coverSrc,
+    primaryTag: post.data.tags?.[0] ?? "Chronicle",
+    pubDatetime: post.data.pubDatetime,
+    timezone: post.data.timezone,
+    readingTime: getReadingTime(post.body),
+  };
+});
+---
+
+{
+  items.length > 0 && (
+    <aside
+      class="flex h-full flex-col justify-between rounded-xl border border-[#ded7cb] bg-white p-5 shadow-sm sm:p-6 dark:border-[#27272a] dark:bg-[#161619]"
+      aria-labelledby="trending-lore-heading"
+    >
+      <header class="flex items-center gap-2.5">
+        <span
+          aria-hidden="true"
+          class="relative inline-flex size-2 shrink-0"
+        >
+          <span class="absolute inset-0 animate-ping rounded-full bg-[#b91c1c]/40" />
+          <span class="absolute inset-0 size-2 rounded-full bg-[#b91c1c]" />
+        </span>
+        <h2
+          id="trending-lore-heading"
+          class="font-display text-xs font-bold uppercase tracking-[0.22em] text-stone-900 dark:text-[#e2ded7]"
+        >
+          Trending Lore
+        </h2>
+        <span
+          aria-hidden="true"
+          class="ml-auto font-mono text-[10px] uppercase tracking-wider text-stone-500 dark:text-[#71717a]"
+        >
+          / Top 3
+        </span>
+      </header>
+
+      <ul class="mt-5 flex flex-col">
+        {items.map(item => (
+          <li class="flex items-start gap-3 border-b border-stone-200 py-3 first:pt-0 last:border-b-0 last:pb-0 dark:border-stone-800">
+            <a
+              href={item.url}
+              tabindex="-1"
+              aria-hidden="true"
+              class="relative aspect-video w-24 shrink-0 overflow-hidden rounded-md bg-stone-100 sm:w-28 dark:bg-[#121214]"
+            >
+              {item.coverSrc ? (
+                <img
+                  src={item.coverSrc}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                  class="size-full object-cover transition-transform duration-500 ease-out hover:scale-105"
+                />
+              ) : (
+                <div class="flex size-full items-center justify-center bg-stone-100 text-stone-400 dark:bg-[#18181b] dark:text-[#71717a]">
+                  <span class="font-display text-[10px] tracking-widest uppercase">
+                    RSJ
+                  </span>
+                </div>
+              )}
+            </a>
+            <div class="min-w-0 flex-1">
+              <span class="font-mono text-[10px] font-bold uppercase tracking-wider text-[#b91c1c] dark:text-[#ef4444]">
+                {item.primaryTag}
+              </span>
+              <a href={item.url} class="mt-1 block focus-visible:outline-none">
+                <h3 class="line-clamp-2 font-display text-sm font-bold leading-snug text-stone-900 transition-colors duration-200 hover:text-[#b91c1c] sm:text-base dark:text-[#e2ded7] dark:hover:text-[#ef4444]">
+                  {item.title}
+                </h3>
+              </a>
+              <div class="mt-1.5 flex items-center gap-1.5 font-mono text-[10px] whitespace-nowrap text-stone-500 dark:text-[#71717a]">
+                <Datetime pubDatetime={item.pubDatetime} timezone={item.timezone} />
+                <span aria-hidden="true">•</span>
+                <span>{item.readingTime}</span>
+              </div>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </aside>
+  )
+}
