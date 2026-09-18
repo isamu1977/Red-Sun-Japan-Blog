@@ -1,8 +1,10 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import { getRelativeLocaleUrl } from "astro:i18n";
 import { getPostUrl } from "@/utils/getPostPaths";
 import { getAssetPath } from "@/utils/withBase";
 import { getReadingTime } from "@/utils/getReadingTime";
+import config from "@/config";
 import Datetime from "./Datetime.astro";
 
 type Props = {
@@ -10,8 +12,10 @@ type Props = {
 };
 
 const { posts } = Astro.props;
+const locale = Astro.currentLocale ?? config.site.lang;
+const allPostsUrl = getRelativeLocaleUrl(locale, "posts");
 
-const items = posts.slice(0, 3).map(post => {
+const items = posts.slice(0, 3).map((post, idx) => {
   const rawCover = post.data.heroImage ?? post.data.ogImage;
   const coverSrc =
     typeof rawCover === "string"
@@ -22,6 +26,7 @@ const items = posts.slice(0, 3).map(post => {
 
   return {
     id: post.id,
+    rank: `0${idx + 1}`,
     url: getPostUrl(post.id, post.filePath, Astro.currentLocale),
     title: post.data.title,
     coverSrc,
@@ -36,73 +41,94 @@ const items = posts.slice(0, 3).map(post => {
 {
   items.length > 0 && (
     <aside
-      class="flex h-full flex-col justify-between rounded-2xl border border-[#ded7cb] bg-white p-6 shadow-sm dark:border-[#27272a] dark:bg-[#161619]"
+      class="flex h-full flex-col justify-between rounded-2xl border border-[#ded7cb] bg-white p-5 sm:p-6 shadow-sm dark:border-[#27272a] dark:bg-[#161619]"
       aria-labelledby="trending-lore-heading"
     >
-      <header class="flex items-center gap-2.5">
-        <span aria-hidden="true" class="relative inline-flex size-2 shrink-0">
-          <span class="absolute inset-0 animate-ping rounded-full bg-[#b91c1c]/40" />
-          <span class="absolute inset-0 size-2 rounded-full bg-[#b91c1c]" />
-        </span>
-        <h2
-          id="trending-lore-heading"
-          class="font-display text-xs font-bold uppercase tracking-[0.22em] text-stone-900 dark:text-[#e2ded7]"
-        >
-          Trending Lore
-        </h2>
-        <span
-          aria-hidden="true"
-          class="ml-auto font-mono text-xs uppercase tracking-wider text-stone-400"
-        >
-          / Top 3
-        </span>
-      </header>
+      <div>
+        <header class="flex items-center gap-2.5 border-b border-stone-200/75 pb-3.5 dark:border-[#27272a]/80">
+          <span aria-hidden="true" class="relative inline-flex size-2 shrink-0">
+            <span class="absolute inset-0 animate-ping rounded-full bg-[#b91c1c]/40" />
+            <span class="absolute inset-0 size-2 rounded-full bg-[#b91c1c]" />
+          </span>
+          <h2
+            id="trending-lore-heading"
+            class="font-display text-xs font-bold uppercase tracking-[0.22em] text-stone-900 dark:text-[#e2ded7]"
+          >
+            Trending Lore
+          </h2>
+          <span
+            aria-hidden="true"
+            class="ml-auto font-mono text-xs uppercase tracking-wider text-stone-400"
+          >
+            / Top 3
+          </span>
+        </header>
 
-      <ul class="mt-4 flex flex-col divide-y divide-stone-200 dark:divide-[#27272a]">
-        {items.map(item => (
-          <li class="flex items-center gap-4 py-4 first:pt-4 last:pb-0">
-            <a
-              href={item.url}
-              tabindex="-1"
-              aria-hidden="true"
-              class="w-28 shrink-0 overflow-hidden rounded-lg bg-stone-100 dark:bg-[#121214]"
-            >
-              <div class="aspect-video">
-                {item.coverSrc ? (
-                  <img
-                    src={item.coverSrc}
-                    alt=""
-                    loading="lazy"
-                    decoding="async"
-                    class="size-full object-cover transition-transform duration-500 ease-out hover:scale-105"
-                  />
-                ) : (
-                  <div class="flex size-full items-center justify-center bg-stone-100 text-stone-400 dark:bg-[#18181b] dark:text-[#71717a]">
-                    <span class="font-display text-[10px] tracking-widest uppercase">
-                      RSJ
-                    </span>
-                  </div>
-                )}
-              </div>
-            </a>
-            <div class="min-w-0 flex-1">
-              <span class="font-mono text-[10px] font-bold uppercase tracking-wider text-[#b91c1c] dark:text-[#ef4444]">
-                {item.primaryTag}
-              </span>
-              <a href={item.url} class="mt-1 block focus-visible:outline-none">
-                <h3 class="line-clamp-2 font-display text-sm font-semibold leading-snug text-stone-900 transition-colors duration-200 hover:text-[#b91c1c] dark:text-[#e2ded7] dark:hover:text-[#ef4444]">
-                  {item.title}
-                </h3>
+        <ul class="divide-y divide-stone-200/75 dark:divide-[#27272a]/80">
+          {items.map(item => (
+            <li class="group relative flex items-start gap-3.5 py-4 first:pt-4 last:pb-2">
+              <a
+                href={item.url}
+                tabindex="-1"
+                aria-hidden="true"
+                class="relative w-20 sm:w-22 shrink-0 overflow-hidden rounded-lg bg-stone-100 dark:bg-[#121214]"
+              >
+                <div class="aspect-[4/3] w-full">
+                  {item.coverSrc ? (
+                    <img
+                      src={item.coverSrc}
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                      class="size-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+                    />
+                  ) : (
+                    <div class="flex size-full items-center justify-center bg-stone-100 text-stone-400 dark:bg-[#18181b] dark:text-[#71717a]">
+                      <span class="font-display text-[10px] tracking-widest uppercase">
+                        RSJ
+                      </span>
+                    </div>
+                  )}
+                </div>
+                <div class="pointer-events-none absolute inset-0 bg-black/10 transition-opacity duration-300 group-hover:opacity-0" />
               </a>
-              <div class="mt-1.5 flex items-center gap-1.5 whitespace-nowrap font-mono text-[10px] text-stone-500 dark:text-[#71717a]">
-                <Datetime pubDatetime={item.pubDatetime} timezone={item.timezone} />
-                <span aria-hidden="true">•</span>
-                <span>{item.readingTime}</span>
+
+              <div class="min-w-0 flex-1">
+                <div class="flex items-center justify-between gap-1.5">
+                  <span class="font-mono text-[10px] font-bold uppercase tracking-wider text-[#b91c1c] dark:text-[#ef4444]">
+                    {item.primaryTag}
+                  </span>
+                  <span class="font-mono text-[10px] font-semibold text-stone-400 dark:text-[#52525b]">
+                    #{item.rank}
+                  </span>
+                </div>
+
+                <a href={item.url} class="mt-1 block focus-visible:outline-none">
+                  <h3 class="line-clamp-2 font-display text-sm font-semibold leading-snug text-stone-900 transition-colors duration-200 group-hover:text-[#b91c1c] dark:text-[#e2ded7] dark:group-hover:text-[#ef4444]">
+                    {item.title}
+                  </h3>
+                </a>
+
+                <div class="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-[11px] text-stone-500 dark:text-[#71717a]">
+                  <Datetime pubDatetime={item.pubDatetime} timezone={item.timezone} size="xs" />
+                  <span aria-hidden="true" class="opacity-60">•</span>
+                  <span>{item.readingTime}</span>
+                </div>
               </div>
-            </div>
-          </li>
-        ))}
-      </ul>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <footer class="mt-4 border-t border-stone-200/75 pt-3 dark:border-[#27272a]/80">
+        <a
+          href={allPostsUrl}
+          class="group/link flex items-center justify-between font-mono text-xs font-semibold uppercase tracking-wider text-stone-500 transition-colors hover:text-[#b91c1c] dark:text-[#8f8b84] dark:hover:text-[#ef4444]"
+        >
+          <span>Explore All Chronicles</span>
+          <span class="transition-transform duration-200 group-hover/link:translate-x-1" aria-hidden="true">→</span>
+        </a>
+      </footer>
     </aside>
   )
 }
