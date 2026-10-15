@@ -11,9 +11,8 @@ const pageDescription =
   "How Red Sun Japan handles affiliate links, sponsorship, and commercial relationships. FTC 16 CFR Part 255 compliance, editorial standards, and how to identify commercial content.";
 
 const contactEmail = "contact@redsunjapan.com";
-const privacyEmail = "privacy@redsunjapan.com";
 const commercialMailto = `mailto:${contactEmail}?subject=${encodeURIComponent("Commercial / Partnership Inquiry")}`;
-const dmcaMailto = `mailto:${privacyEmail}?subject=${encodeURIComponent("DMCA / Commercial Disclosure Concern")}`;
+const dmcaMailto = `mailto:${contactEmail}?subject=${encodeURIComponent("DMCA / Commercial Disclosure Concern")}`;
 ---
 
 <Layout
@@ -294,7 +293,7 @@ const dmcaMailto = `mailto:${privacyEmail}?subject=${encodeURIComponent("DMCA / 
     <p>
       If you believe a post on this site contains an undisclosed
       commercial relationship, please write to
-      <a href={dmcaMailto}>{privacyEmail}</a>
+      <a href={dmcaMailto}>{contactEmail}</a>
       with the URL of the post and a brief explanation. We will review
       and respond within 7 business days; if a correction is warranted,
       it will be published with the same prominence as the original

@@ -11,7 +11,8 @@ const pageDescription =
   "Contact the Red Sun Japan editorial team. Email, social channels, response times, and the best way to reach us for collaboration, press, corrections, or general feedback.";
 
 const contactEmail = "contact@redsunjapan.com";
-const privacyEmail = "privacy@redsunjapan.com";
+const privacyMailto = `mailto:${contactEmail}?subject=${encodeURIComponent("Privacy & Data Request")}`;
+const dmcaMailto = `mailto:${contactEmail}?subject=${encodeURIComponent("DMCA Notice")}`;
 const mailtoSubject = encodeURIComponent("Red Sun Japan — Inquiry");
 const mailtoBody = encodeURIComponent(
   "Hello Red Sun Japan team,\n\nI am reaching out from the Red Sun Japan blog regarding:\n\n[Please describe the reason for your message]\n\n---\nName:\nPreferred language:\nHow you found us:\n"
@@ -175,8 +176,7 @@ const socialChannels = [
       <li>
         <strong>Privacy, data, and GDPR/LGPD/CCPA/APPI requests:</strong>
         write to <a
-          href={`mailto:${privacyEmail}?subject=${encodeURIComponent("Privacy & Data Request")}`}
-          >{privacyEmail}</a
+          href={privacyMailto}>{contactEmail}</a
         >. This inbox is monitored by a different workflow with stricter
         response-time commitments.
       </li>
@@ -185,8 +185,7 @@ const socialChannels = [
         Section 5 of our <a href="/privacy/">Privacy Policy</a> for the
         full protocol and required information. Send to
         <a
-          href={`mailto:${privacyEmail}?subject=${encodeURIComponent("DMCA Notice")}`}
-          >{privacyEmail}</a
+          href={dmcaMailto}>{contactEmail}</a
         > with the exact URLs in question.
       </li>
       <li>
