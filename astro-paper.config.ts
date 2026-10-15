@@ -50,11 +50,6 @@ export default defineAstroPaperConfig({
       linkTitle: "Red Sun Japan on X",
     },
     {
-      name: "shopping-bag",
-      url: "https://red-sun-japan.printify.me/",
-      linkTitle: "Red Sun Japan Shop (Printify)",
-    },
-    {
       name: "rss",
       url: "/rss.xml",
       linkTitle: "RSS Feed",
