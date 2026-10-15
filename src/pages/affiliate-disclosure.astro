@@ -1,0 +1,330 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Breadcrumb from "@/components/Breadcrumb.astro";
+import Main from "@/components/Main.astro";
+import Footer from "@/components/Footer.astro";
+import config from "@/config";
+
+const pageTitle = "Affiliate Disclosure & Editorial Independence";
+const pageDescription =
+  "How Red Sun Japan handles affiliate links, sponsorship, and commercial relationships. FTC 16 CFR Part 255 compliance, editorial standards, and how to identify commercial content.";
+
+const contactEmail = "contact@redsunjapan.com";
+const privacyEmail = "privacy@redsunjapan.com";
+const commercialMailto = `mailto:${contactEmail}?subject=${encodeURIComponent("Commercial / Partnership Inquiry")}`;
+const dmcaMailto = `mailto:${privacyEmail}?subject=${encodeURIComponent("DMCA / Commercial Disclosure Concern")}`;
+---
+
+<Layout
+  title={`${pageTitle} | ${config.site.title}`}
+  description={pageDescription}
+>
+  <Header />
+
+  <Breadcrumb />
+
+  <Main pageTitle={pageTitle} class="app-prose">
+    <p class="lead italic text-[#928f88]">
+      Last Updated: October 15, 2026. This page discloses how Red Sun
+      Japan handles commercial relationships, affiliate links, and any
+      compensation that influences the content we publish.
+    </p>
+
+    <div
+      class="not-prose my-6 rounded-lg border border-[#27272a] bg-[#161619] p-4 text-xs leading-relaxed text-[#928f88]"
+    >
+      <strong class="text-[#e2ded7]">TL;DR:</strong>
+      <strong class="text-[#e2ded7]">We do not run sponsored
+        episodes.</strong>
+      We do not accept payment to cover a story, suppress a story, or
+      shape editorial opinion. If we ever include an affiliate link to a
+      book, tool, or piece of art, the channel may earn a small
+      commission at
+      <strong class="text-[#e2ded7]">no additional cost to you</strong>.
+      Every such link is marked.
+    </div>
+
+    <h2>1. Regulatory framework</h2>
+    <p>
+      This page is published in compliance with the
+      <strong>U.S. Federal Trade Commission (FTC) Endorsement Guides,
+        16 CFR Part 255</strong>, which require clear disclosure of
+      "material connections" between an endorser and a seller —
+      including affiliate relationships, free product, paid sponsorships,
+      and family or employment ties.
+    </p>
+    <p>
+      Equivalent laws that inform this policy include the
+      <strong>UK Competition and Markets Authority (CMA) guidance on
+        influencer transparency</strong>, the
+      <strong>Brazilian CONAR Code of Ethics on Advertising</strong>,
+      and <strong>Japan's Act against Unjustifiable Premiums and
+        Misleading Representations (景品表示法)</strong>. Where
+      jurisdictions diverge, we apply the strictest standard.
+    </p>
+
+    <h2>2. Editorial independence — the non-negotiables</h2>
+    <p>
+      These rules govern every commercial decision the channel makes.
+      They are not negotiable and have not changed since the channel
+      launched:
+    </p>
+    <ol>
+      <li>
+        <strong>No paid editorial coverage.</strong> We do not accept
+        payment, free product, hospitality, or any other consideration
+        in exchange for covering a story, an individual, a product, or a
+        place.
+      </li>
+      <li>
+        <strong>No sponsored segments inside videos.</strong> Episodes
+        do not contain ad reads, product placements, or branded
+        integrations. The exception is platform-level mid-roll
+        advertising (YouTube's own program), over which we have no
+        editorial control.
+      </li>
+      <li>
+        <strong>No advance review by sponsors.</strong> Commercial
+        partners never see scripts, narration drafts, or final cuts
+        before publication.
+      </li>
+      <li>
+        <strong>Affiliate links do not bias coverage.</strong> If we
+        link to a book on a topic, the link does not increase or
+        decrease the chance that the book appears in our research. We
+        link to things we would have cited anyway.
+      </li>
+      <li>
+        <strong>Corrections are public.</strong> If a commercial
+        relationship is later found to have influenced a piece of
+        content in a way we did not intend, we will publish a
+        correction with the same prominence as the original piece.
+      </li>
+    </ol>
+
+    <h2>3. What we mean by "affiliate link"</h2>
+    <p>
+      An affiliate link is a URL that contains a tracking parameter
+      identifying the referrer (in our case, Red Sun Japan). If a
+      visitor clicks the link and later makes a purchase, the affiliate
+      program may pay us a small percentage of the sale. The price you
+      pay is the same with or without the link — the commission comes
+      out of the merchant's marketing budget, not your pocket.
+    </p>
+    <p>
+      Affiliate revenue is one of the smaller funding lines for the
+      channel; it does not cover operating costs and has never been the
+      reason an article was written. We disclose it because the law
+      requires it, and because the relationship should be visible to
+      you.
+    </p>
+
+    <h2>4. Categories we may link to (with editorial criteria)</h2>
+    <p>
+      When we link to a product, it falls into one of these categories.
+      Each has a written editorial standard that must be met before the
+      link goes live:
+    </p>
+
+    <h3>4.1 Books and primary sources</h3>
+    <ul>
+      <li>
+        Classical Japanese literature in translation (Tuttle,
+        Princeton, Columbia). Criterion: scholarly translation with
+        apparatus, not a paraphrased retelling.
+      </li>
+      <li>
+        Edo-period reference works (kokushi, kaidan collections,
+        historical dictionaries). Criterion: directly cited in the
+        episode's research.
+      </li>
+      <li>
+        Western-language scholarship that informed the script
+        (historians, folklorists, anthropologists). Criterion: the work
+        actually appears in the bibliography of the blog post, not a
+        generic "related reading" list.
+      </li>
+    </ul>
+
+    <h3>4.2 Tools and craft supplies</h3>
+    <ul>
+      <li>
+        Calligraphy supplies, sumi ink, washi paper. Criterion:
+        professional-grade; we will not link to disposable tourist
+        souvenirs.
+      </li>
+      <li>
+        Historical reference books and replicas (armor, weapons,
+        clothing) sold by museums or specialty vendors. Criterion: the
+        vendor provides provenance and is known to the museum-studies
+        community.
+      </li>
+    </ul>
+
+    <h3>4.3 Art and merchandise from this site</h3>
+    <ul>
+      <li>
+        When the channel operates a Printify storefront for fine art
+        prints, puzzles, and apparel, every product page is itself a
+        commercial disclosure. The art is original to the channel or
+        derived from public-domain ukiyo-e and emakimono; the
+        commercial relationship is the storefront itself.
+      </li>
+    </ul>
+
+    <h2>5. Categories we will never link to</h2>
+    <p>
+      These are lines we will not cross regardless of commission rate,
+      audience request, or commercial pressure:
+    </p>
+    <ul>
+      <li>
+        Gambling products, prediction markets, or speculative financial
+        products. Japanese history has too many lessons about
+        speculative ruin.
+      </li>
+      <li>
+        Supplements, wellness products, or anything ingested. The
+        channel does not give health advice.
+      </li>
+      <li>
+        VPN services, password managers, or "online safety" tools that
+        profit from fear-based marketing.
+      </li>
+      <li>
+        Any product whose marketing uses imagery of suffering, religious
+        disrespect, or trivialization of historical atrocity.
+      </li>
+      <li>
+        Dropshipping or "Amazon FBA aggregator" products with no
+        verifiable brand identity.
+      </li>
+    </ul>
+
+    <h2>6. How to identify a commercial link on this site</h2>
+    <p>
+      On the blog, every article that contains an affiliate link carries
+      a visible disclosure at the top of the post body, formatted as:
+    </p>
+    <blockquote>
+      <em
+        >"This article contains affiliate links. Red Sun Japan may earn a
+        commission on qualifying purchases, at no additional cost to
+        you."</em
+      >
+    </blockquote>
+    <p>
+      On social platforms, sponsored or affiliate content is tagged
+      with the platform-native disclosure tools (e.g. YouTube's
+      "Includes paid promotion" toggle, Instagram's "Paid partnership"
+      label, X's ad marker). We do not rely on hashtags like
+      <code class="text-xs bg-[#222227] px-1 py-0.5 rounded">#ad</code>
+      alone, since the platforms' tools are more reliable.
+    </p>
+    <p>
+      Affiliate links themselves are not visually distinguished by
+      color on the blog. We rely on the disclosure block at the top of
+      the post rather than per-link markers, on the principle that
+      "disclosure once, prominently" is more honest than a forest of
+      small icons.
+    </p>
+
+    <h2>7. Editorial review process for affiliate inclusion</h2>
+    <p>
+      Before any affiliate link is published in a blog post, the
+      editorial team runs the following check:
+    </p>
+    <ol>
+      <li>
+        The linked product appears in the research bibliography of the
+        post, or is a primary source directly cited in the narration.
+      </li>
+      <li>
+        The linked product has been independently reviewed by a
+        recognized authority in its category (a museum, a scholarly
+        publisher, a professional guild).
+      </li>
+      <li>
+        The vendor discloses provenance, materials, and country of
+        origin clearly on the product page.
+      </li>
+      <li>
+        The commission rate is not the reason the product is being
+        recommended; the editorial reason stands without the link.
+      </li>
+    </ol>
+    <p>
+      If any of these checks fail, the link is removed and the post is
+      re-published with the non-affiliate URL (or no link at all).
+    </p>
+
+    <h2>8. Conflict-of-interest disclosures</h2>
+    <p>
+      The editorial team is required to disclose, in the blog post or
+      video description, any of the following relationships with a
+      person, organization, or work that appears in a piece:
+    </p>
+    <ul>
+      <li>Family, romantic, or close personal relationship.</li>
+      <li>Current or recent (within 24 months) employment.</li>
+      <li>Direct financial holding exceeding 1% of a public company.</li>
+      <li>
+        Receipt of any gift, hospitality, or free product valued at
+        more than USD 50 in the 12 months prior to publication.
+      </li>
+    </ul>
+    <p>
+      When in doubt, we disclose. When disclosure would be
+      disproportionate to the size of the relationship, we still
+      disclose.
+    </p>
+
+    <h2>9. AI-generated content and materials</h2>
+    <p>
+      Some of the channel's visual assets are AI-assisted. We mark
+      those assets individually in the blog post where they appear, and
+      we do not link to AI-generation services as a revenue source
+      (i.e. we are not an "AI tools affiliate"). If that policy
+      changes, this page will be updated before any new links are
+      published.
+    </p>
+
+    <h2>10. Questions, complaints, and DMCA</h2>
+    <p>
+      If you believe a post on this site contains an undisclosed
+      commercial relationship, please write to
+      <a href={dmcaMailto}>{privacyEmail}</a>
+      with the URL of the post and a brief explanation. We will review
+      and respond within 7 business days; if a correction is warranted,
+      it will be published with the same prominence as the original
+      post.
+    </p>
+    <p>
+      For general commercial and partnership inquiries (not corrections
+      or complaints), write to
+      <a href={commercialMailto}>{contactEmail}</a>.
+    </p>
+
+    <h2>11. Changes to this disclosure</h2>
+    <p>
+      We will update this page if our commercial relationships change
+      in any material way (new affiliate programs, new categories of
+      sponsored content, new regulatory requirements). Material changes
+      will be reflected in the "Last Updated" date at the top of this
+      page and in a short note in the next blog post that includes
+      commercial content.
+    </p>
+
+    <hr />
+
+    <p class="text-sm text-[#928f88]">
+      For the full data-handling and privacy framework, see the
+      <a href="/privacy/">Privacy Policy</a>.
+      For cookie and consent management, see the
+      <a href="/cookies/">Cookie Policy</a>.
+    </p>
+  </Main>
+
+  <Footer />
+</Layout>

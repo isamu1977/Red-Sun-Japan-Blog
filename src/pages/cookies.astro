@@ -1,0 +1,285 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Breadcrumb from "@/components/Breadcrumb.astro";
+import Main from "@/components/Main.astro";
+import Footer from "@/components/Footer.astro";
+import config from "@/config";
+
+const pageTitle = "Cookie Policy & Consent Governance";
+const pageDescription =
+  "How Red Sun Japan uses cookies, local storage, and three-tier granular consent. What stays active by default, what stays off, and how to revoke your choices at any time.";
+
+const privacyEmail = "privacy@redsunjapan.com";
+const privacyMailto = `mailto:${privacyEmail}?subject=${encodeURIComponent("Cookie & Consent Question")}`;
+---
+
+<Layout
+  title={`${pageTitle} | ${config.site.title}`}
+  description={pageDescription}
+>
+  <Header />
+
+  <Breadcrumb />
+
+  <Main pageTitle={pageTitle} class="app-prose">
+    <p class="lead italic text-[#928f88]">
+      Last Updated: October 15, 2026. This page explains the cookies and
+      similar storage that Red Sun Japan uses, what each one does, and how
+      to change your mind at any time.
+    </p>
+
+    <div
+      class="not-prose my-6 rounded-lg border border-[#27272a] bg-[#161619] p-4 text-xs leading-relaxed text-[#928f88]"
+    >
+      <strong class="text-[#e2ded7]">Short version:</strong>
+      we use only the cookies strictly necessary to run the site (theme
+      preference, CSRF protection, your saved consent choice). Analytics
+      and marketing cookies stay
+      <strong class="text-[#e2ded7]">off by default</strong>
+      and only load if you explicitly opt in. You can revoke that choice
+      from the
+      <strong class="text-[#e2ded7]">"Manage Cookie Preferences"</strong>
+      button in the footer of any page.
+    </div>
+
+    <h2>1. What is a cookie?</h2>
+    <p>
+      A cookie is a small text file your browser stores on your device
+      when you visit a site. Cookies (and the closely related
+      <em>localStorage</em> and <em>sessionStorage</em> APIs) let a site
+      remember small pieces of state between page loads: your theme
+      preference, your language, whether you've already seen a notice,
+      and so on. They cannot run code on your device or read other
+      files on it.
+    </p>
+    <p>
+      We use the word "cookie" throughout this page to mean both
+      traditional cookies and equivalent client-side storage
+      (localStorage, sessionStorage, IndexedDB). The consent architecture
+      is the same for all of them.
+    </p>
+
+    <h2>2. The three-tier consent architecture</h2>
+    <p>
+      We follow a strict <strong>three-tier model</strong>. Each tier is
+      independent, meaning accepting one does not automatically opt you
+      into the others:
+    </p>
+
+    <h3>Tier 1 — Strictly Necessary (always active)</h3>
+    <p>
+      These storage items are required for the site to function and
+      cannot be switched off in our systems. They are set without
+      consent because the site cannot operate without them.
+    </p>
+    <ul>
+      <li>
+        <strong>Theme preference (Dark / Light mode):</strong> a small
+        localStorage entry that remembers your visual choice across
+        pages and visits.
+      </li>
+      <li>
+        <strong>Cookie consent record:</strong> a localStorage entry
+        that stores the choices you made in the consent banner so we
+        don't show the banner again on every visit.
+      </li>
+      <li>
+        <strong>Cryptographic state tokens:</strong> short-lived
+        session tokens that protect form submissions against cross-site
+        request forgery (CSRF). These are cleared when you close the
+        browser tab.
+      </li>
+      <li>
+        <strong>Pagefind search index:</strong> a small client-side
+        index that powers the search page. It is generated locally and
+        is not transmitted to any server.
+      </li>
+    </ul>
+
+    <h3>Tier 2 — Analytics & Telemetry (off by default)</h3>
+    <p>
+      We may load aggregate, anonymized analytics to understand which
+      articles resonate and where the site is slow. This data is never
+      tied to your name, email, or any other personal identifier; it
+      is also never sold or shared with third parties for advertising.
+    </p>
+    <ul>
+      <li>
+        Privacy-respecting analytics tooling (when enabled) records
+        only: anonymized IP fragment, browser family, device class,
+        referrer, and the article URL visited.
+      </li>
+      <li>
+        No cross-site profiling, no fingerprinting, no persistent user
+        identifiers.
+      </li>
+      <li>
+        You can opt out at any time via the
+        <strong>"Manage Cookie Preferences"</strong> button in the
+        footer.
+      </li>
+    </ul>
+
+    <h3>Tier 3 — Marketing & Third-Party Embeds (off by default)</h3>
+    <p>
+      We may load marketing pixels or advertising tags that evaluate
+      media engagement, retarget visitors, or measure ad performance.
+      These are loaded
+      <strong>only after explicit opt-in</strong>
+      and never before.
+    </p>
+    <ul>
+      <li>
+        Examples of tags that may load under Tier 3: Google AdSense,
+        Pinterest tag, Facebook Pixel, affiliate network trackers.
+      </li>
+      <li>
+        These tags are operated by their respective vendors and are
+        subject to those vendors' privacy policies — see the
+        <a href="/privacy/">Privacy Policy</a> Section 4 for the list
+        of third parties we partner with.
+      </li>
+    </ul>
+
+    <h2>3. The consent banner</h2>
+    <p>
+      The first time you visit Red Sun Japan, a banner appears at the
+      bottom of the page with three equally weighted options:
+    </p>
+    <ul>
+      <li>
+        <strong>Accept All</strong> — enables Tier 2 and Tier 3 in
+        addition to Tier 1.
+      </li>
+      <li>
+        <strong>Reject All</strong> — keeps only Tier 1 active.
+        Analytics and marketing tags are not loaded.
+      </li>
+      <li>
+        <strong>Customize</strong> — opens a detailed panel where you
+        can enable or disable Tier 2 and Tier 3 independently.
+      </li>
+    </ul>
+    <p>
+      Your choice is stored in a localStorage record (a Tier 1 item)
+      and respected on every subsequent visit. The banner does not
+      reappear unless you clear your browser storage or revoke your
+      choice from the footer.
+    </p>
+
+    <h2>4. How to change or revoke your choice</h2>
+    <p>
+      You can review, modify, or completely revoke your cookie consent
+      selections at any time. Two methods are supported:
+    </p>
+    <ol>
+      <li>
+        Click the
+        <strong class="text-[#e2ded7]">"Manage Cookie Preferences"</strong>
+        link in the footer of any page. This reopens the consent
+        banner with your current choices pre-selected.
+      </li>
+      <li>
+        Clear your browser's site data for
+        <code class="text-xs bg-[#222227] px-1 py-0.5 rounded"
+          >redsunjapan.com</code
+        >. The next page load will treat you as a new visitor and show
+        the banner again.
+      </li>
+    </ol>
+    <p>
+      Either action is immediate. No data collected under a previous
+      choice is retroactively deleted, but no further data will be
+      collected under the new choice.
+    </p>
+
+    <h2>5. Third-party storage set by content we embed</h2>
+    <p>
+      Even when marketing cookies are disabled, the act of
+      <em>clicking play</em>
+      on an embedded video can cause the third-party platform to set its
+      own cookies. We mitigate this by using the most privacy-respecting
+      embed mode available:
+    </p>
+    <ul>
+      <li>
+        <strong>YouTube videos</strong> are embedded via
+        <code class="text-xs bg-[#222227] px-1 py-0.5 rounded"
+          >youtube-nocookie.com</code
+        >. YouTube does not set tracking cookies until you actively
+        press play.
+      </li>
+      <li>
+        <strong>Pagefind search</strong> runs entirely in your browser;
+        no data is sent to any external service.
+      </li>
+      <li>
+        <strong>Coolify / hosting infrastructure</strong> may write
+        short-lived server logs (anonymized IP, request path, status
+        code) retained for at most 30 days for DDoS protection and
+        security monitoring.
+      </li>
+    </ul>
+
+    <h2>6. Your rights under GDPR, CCPA, LGPD & APPI</h2>
+    <p>
+      Depending on your jurisdiction, you may have additional rights
+      related to cookies and tracking:
+    </p>
+    <ul>
+      <li>
+        <strong>Right to refuse non-essential cookies</strong> — we
+        honor this by keeping Tier 2 and Tier 3 off by default.
+      </li>
+      <li>
+        <strong>Right to access</strong> what data has been collected
+        about you.
+      </li>
+      <li>
+        <strong>Right to erasure</strong> ("right to be forgotten") of
+        any personal data we hold.
+      </li>
+      <li>
+        <strong>Right to data portability</strong> in a machine-readable
+        format.
+      </li>
+    </ul>
+    <p>
+      To exercise any of these rights, write to
+      <a href={privacyMailto}>{privacyEmail}</a>. We respond within the
+      statutory deadlines for your jurisdiction (typically 30 days for
+      GDPR, 45 days for CCPA).
+    </p>
+
+    <h2>7. Changes to this policy</h2>
+    <p>
+      We will update this page if we change which cookies we use, add
+      new tiers, or change the consent flow. Material changes will be
+      reflected in the "Last Updated" date at the top of this page and
+      may trigger a re-prompt of the consent banner on your next visit.
+    </p>
+
+    <h2>8. Questions</h2>
+    <p>
+      If anything on this page is unclear, or you want to know exactly
+      which cookies were set during a specific visit, write to
+      <a href={privacyMailto}>{privacyEmail}</a> with the date and time
+      of the visit (taken from your browser history) and we will pull
+      the server log.
+    </p>
+
+    <hr />
+
+    <p class="text-sm text-[#928f88]">
+      For the full legal framework that governs cookies, data
+      processing, and your rights, see the
+      <a href="/privacy/">Privacy Policy</a>.
+      For information on commercial relationships and editorial
+      standards, see the
+      <a href="/affiliate-disclosure/">Affiliate Disclosure</a>.
+    </p>
+  </Main>
+
+  <Footer />
+</Layout>

@@ -15,6 +15,12 @@ const t = useTranslations(locale);
 const currentYear = new Date().getFullYear();
 const aboutUrl = getRelativeLocaleUrl(locale ?? "en", "about");
 const privacyUrl = getRelativeLocaleUrl(locale ?? "en", "privacy");
+const contactUrl = getRelativeLocaleUrl(locale ?? "en", "contact");
+const cookiesUrl = getRelativeLocaleUrl(locale ?? "en", "cookies");
+const affiliateDisclosureUrl = getRelativeLocaleUrl(
+  locale ?? "en",
+  "affiliate-disclosure"
+);
 ---
 
 <footer
@@ -30,7 +36,13 @@ const privacyUrl = getRelativeLocaleUrl(locale ?? "en", "privacy");
       <span class="hidden sm:inline">&nbsp;|&nbsp;</span>
       <a href={aboutUrl} class="hover:text-accent transition-colors underline-offset-4 hover:underline">About</a>
       <span class="hidden sm:inline">&nbsp;|&nbsp;</span>
+      <a href={contactUrl} class="hover:text-accent transition-colors underline-offset-4 hover:underline">Contact</a>
+      <span class="hidden sm:inline">&nbsp;|&nbsp;</span>
       <a href={privacyUrl} class="hover:text-accent transition-colors underline-offset-4 hover:underline">Privacy Policy</a>
+      <span class="hidden sm:inline">&nbsp;|&nbsp;</span>
+      <a href={cookiesUrl} class="hover:text-accent transition-colors underline-offset-4 hover:underline">Cookies</a>
+      <span class="hidden sm:inline">&nbsp;|&nbsp;</span>
+      <a href={affiliateDisclosureUrl} class="hover:text-accent transition-colors underline-offset-4 hover:underline">Affiliate Disclosure</a>
       <span class="hidden sm:inline">&nbsp;|&nbsp;</span>
       <button
         id="manage-cookies-btn"

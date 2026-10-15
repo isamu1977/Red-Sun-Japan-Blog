@@ -1,0 +1,298 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Breadcrumb from "@/components/Breadcrumb.astro";
+import Main from "@/components/Main.astro";
+import Footer from "@/components/Footer.astro";
+import config from "@/config";
+
+const pageTitle = "Get in Touch";
+const pageDescription =
+  "Contact the Red Sun Japan editorial team. Email, social channels, response times, and the best way to reach us for collaboration, press, corrections, or general feedback.";
+
+const contactEmail = "contact@redsunjapan.com";
+const privacyEmail = "privacy@redsunjapan.com";
+const mailtoSubject = encodeURIComponent("Red Sun Japan — Inquiry");
+const mailtoBody = encodeURIComponent(
+  "Hello Red Sun Japan team,\n\nI am reaching out from the Red Sun Japan blog regarding:\n\n[Please describe the reason for your message]\n\n---\nName:\nPreferred language:\nHow you found us:\n"
+);
+const mailtoHref = `mailto:${contactEmail}?subject=${mailtoSubject}&body=${mailtoBody}`;
+
+const socialChannels = [
+  {
+    name: "YouTube",
+    handle: "@redsunjapan",
+    url: "https://www.youtube.com/@redsunjapan",
+    desc: "Long-form documentaries, premieres on Tuesdays and Thursdays.",
+    primary: true,
+  },
+  {
+    name: "Instagram",
+    handle: "@redsunjapan_official",
+    url: "https://www.instagram.com/redsunjapan_official/",
+    desc: "Visual plates, production stills, and short-form folklore.",
+  },
+  {
+    name: "Pinterest",
+    handle: "@redsunjapan",
+    url: "https://jp.pinterest.com/redsunjapan/",
+    desc: "Curated boards of ukiyo-e, emakimono, and period art references.",
+  },
+  {
+    name: "X (Twitter)",
+    handle: "@redsunjapan",
+    url: "https://x.com/redsunjapan",
+    desc: "Release notes, archival finds, and community conversation.",
+  },
+];
+---
+
+<Layout
+  title={`${pageTitle} | ${config.site.title}`}
+  description={pageDescription}
+>
+  <Header />
+
+  <Breadcrumb />
+
+  <Main pageTitle={pageTitle} class="app-prose">
+    <p class="lead italic text-[#928f88]">
+      We are an independent editorial project — no studio, no press desk, no
+      agent. Every message reaches a real human on the Red Sun Japan team.
+    </p>
+
+    <div
+      class="not-prose my-6 rounded-lg border border-[#27272a] bg-[#161619] p-5 text-sm leading-relaxed text-[#e2ded7]"
+    >
+      <p class="font-semibold text-[#e2ded7]">Primary contact channel</p>
+      <p class="mt-1 font-mono text-base text-[#b91c1c]">
+        {contactEmail}
+      </p>
+      <p class="mt-2 text-xs text-[#928f88]">
+        Average response time: <strong>2–5 business days (JST)</strong>.
+        We read every message; we may take a while if the inbox is heavy.
+      </p>
+    </div>
+
+    <div class="not-prose my-6 flex flex-wrap gap-3">
+      <a
+        href={mailtoHref}
+        class="inline-flex items-center gap-2 rounded-md bg-[#b91c1c] px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-[#9e1b1b] focus:outline-none focus:ring-2 focus:ring-[#b91c1c] focus:ring-offset-2 focus:ring-offset-[#161619] dark:focus:ring-offset-[#161619]"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M3 7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+          <path d="m3 7 9 6 9-6"></path>
+        </svg>
+        Open your email app
+      </a>
+
+      <button
+        type="button"
+        id="copy-email-btn"
+        data-email={contactEmail}
+        class="inline-flex items-center gap-2 rounded-md border border-[#3a3a3f] bg-transparent px-5 py-2.5 text-sm font-semibold text-[#e2ded7] transition-colors hover:border-[#b91c1c] hover:text-[#b91c1c] focus:outline-none focus:ring-2 focus:ring-[#b91c1c] focus:ring-offset-2 focus:ring-offset-[#161619]"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+        <span id="copy-email-label">Copy email address</span>
+      </button>
+    </div>
+
+    <h2>What we love hearing about</h2>
+    <p>
+      The vast majority of messages we receive are kind readers, archival
+      researchers, and creators who want to share something they think we'd
+      love. We answer those first. The list below is the kind of thing we
+      genuinely want to read in our inbox:
+    </p>
+    <ul>
+      <li>
+        <strong>Story suggestions and source material.</strong> A kaidan
+        you grew up hearing, a regional legend, an obscure Edo-period
+        manuscript you think deserves an episode. Even a single sentence
+        pointing us at a source is welcome.
+      </li>
+      <li>
+        <strong>Corrections and historical feedback.</strong> Caught a
+        wrong date? A misattributed print? A place name we mispronounced?
+        We will fix it, credit you on the blog revision, and appreciate
+        the rigor.
+      </li>
+      <li>
+        <strong>Translations and primary-source help.</strong> If you
+        read classical Japanese (or another language) and can help us
+        verify a source, we would be honored to collaborate.
+      </li>
+      <li>
+        <strong>Press, podcast guest invitations, and academic citation
+        requests.</strong> Please include your outlet, deadline, and
+        topic — we treat these as time-sensitive and prioritize them.
+      </li>
+      <li>
+        <strong>Educational use and clip licensing.</strong> Teachers,
+        professors, and museum educators writing about the channel —
+        we are happy to grant non-commercial clips and discuss licensing
+        for commercial use.
+      </li>
+      <li>
+        <strong>Partnerships that respect the editorial mission.</strong>
+        We do not run sponsored episodes. We are open to genuine
+        collaborations with archives, museums, and publishers whose
+        standards we already trust.
+      </li>
+    </ul>
+
+    <h2>What to send elsewhere</h2>
+    <p>
+      To route your message correctly and get a faster answer, please use
+      the channel that fits the topic:
+    </p>
+    <ul>
+      <li>
+        <strong>Privacy, data, and GDPR/LGPD/CCPA/APPI requests:</strong>
+        write to <a
+          href={`mailto:${privacyEmail}?subject=${encodeURIComponent("Privacy & Data Request")}`}
+          >{privacyEmail}</a
+        >. This inbox is monitored by a different workflow with stricter
+        response-time commitments.
+      </li>
+      <li>
+        <strong>DMCA and copyright takedown notices:</strong> see
+        Section 5 of our <a href="/privacy/">Privacy Policy</a> for the
+        full protocol and required information. Send to
+        <a
+          href={`mailto:${privacyEmail}?subject=${encodeURIComponent("DMCA Notice")}`}
+          >{privacyEmail}</a
+        > with the exact URLs in question.
+      </li>
+      <li>
+        <strong>Affiliate, sponsorship, and commercial inquiries:</strong>
+        see our <a href="/affiliate-disclosure/"
+          >Affiliate Disclosure</a
+        > page for the editorial standards we apply before any commercial
+        relationship. We respond to these within 7 business days.
+      </li>
+      <li>
+        <strong>YouTube comments and reports:</strong> please use the
+        YouTube platform directly — we read every pinned-comment reply
+        and most thread replies. The blog email is not a substitute for
+        the comment section on a specific video.
+      </li>
+    </ul>
+
+    <h2>Response time, working language, and timezone</h2>
+    <p>
+      The editorial team operates from <strong>Japan Standard Time (JST,
+      UTC+9)</strong>. Working hours are weekdays 10:00–19:00 JST; messages
+      received outside those hours are answered the next business day.
+    </p>
+    <p>
+      We currently answer email in <strong>English, Portuguese (Brazilian),
+      and Japanese</strong>. If you write in another language, we will
+      still do our best — but please be patient with machine-translation
+      errors on our side.
+    </p>
+    <p>
+      We do <strong>not</strong> offer synchronous calls, video meetings,
+      or phone support. Everything moves through email so we can preserve
+      a paper trail and reply with care.
+    </p>
+
+    <h2>Follow us across the platform</h2>
+    <p>
+      Email is the right channel for back-and-forth, but if you want to
+      follow the work without writing to us, here is where each piece of
+      Red Sun Japan lives:
+    </p>
+    <div class="not-prose grid gap-3 sm:grid-cols-2">
+      {
+        socialChannels.map((s) => (
+          <a
+            href={s.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="block rounded-lg border border-[#27272a] bg-[#161619] p-4 transition-colors hover:border-[#b91c1c]"
+          >
+            <p class="text-xs uppercase tracking-wider text-[#928f88]">
+              {s.name}
+            </p>
+            <p class="mt-1 font-mono text-sm text-[#e2ded7]">{s.handle}</p>
+            <p class="mt-2 text-xs leading-relaxed text-[#928f88]">
+              {s.desc}
+            </p>
+          </a>
+        ))
+      }
+    </div>
+
+    <h2>A note on the editorial mission</h2>
+    <p>
+      We started Red Sun Japan to make the darker, more solemn chapters
+      of feudal Japan accessible to a global audience without diluting
+      the material. Every message you send us is read by a person who
+      cares about that mission. If you reached out, you are part of why
+      the channel can keep going.
+    </p>
+    <p>
+      For full data-handling, cookie, and affiliate governance, see our
+      <a href="/privacy/">Privacy Policy</a>,
+      <a href="/cookies/">Cookie Policy</a>, and
+      <a href="/affiliate-disclosure/">Affiliate Disclosure</a>.
+    </p>
+  </Main>
+
+  <Footer />
+</Layout>
+
+<script>
+  function setupCopyEmail() {
+    const btn = document.getElementById("copy-email-btn");
+    const label = document.getElementById("copy-email-label");
+    if (!btn || !label) return;
+    btn.addEventListener("click", async () => {
+      const email = btn.getAttribute("data-email") ?? "";
+      try {
+        await navigator.clipboard.writeText(email);
+        const original = label.textContent;
+        label.textContent = "Copied!";
+        setTimeout(() => {
+          if (label.textContent === "Copied!") label.textContent = original;
+        }, 2200);
+      } catch (_err) {
+        const original = label.textContent;
+        label.textContent = "Press ⌘C to copy";
+        setTimeout(() => {
+          if (label.textContent === "Press ⌘C to copy")
+            label.textContent = original;
+        }, 3000);
+      }
+    });
+  }
+
+  setupCopyEmail();
+  document.addEventListener("astro:page-load", setupCopyEmail);
+</script>
