@@ -35,6 +35,26 @@ export default defineAstroPaperConfig({
       linkTitle: "Red Sun Japan on YouTube",
     },
     {
+      name: "instagram",
+      url: "https://www.instagram.com/redsunjapan_official/",
+      linkTitle: "Red Sun Japan on Instagram",
+    },
+    {
+      name: "pinterest",
+      url: "https://jp.pinterest.com/redsunjapan/",
+      linkTitle: "Red Sun Japan on Pinterest",
+    },
+    {
+      name: "x",
+      url: "https://x.com/redsunjapan",
+      linkTitle: "Red Sun Japan on X",
+    },
+    {
+      name: "shopping-bag",
+      url: "https://red-sun-japan.printify.me/",
+      linkTitle: "Red Sun Japan Shop (Printify)",
+    },
+    {
       name: "rss",
       url: "/rss.xml",
       linkTitle: "RSS Feed",
