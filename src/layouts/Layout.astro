@@ -4,7 +4,7 @@ import { ClientRouter } from "astro:transitions";
 import { getRelativeLocaleUrl } from "astro:i18n";
 import { resolveDefaultOgImagePath } from "@/utils/resolveDefaultOgImagePath";
 import { getAssetPath } from "@/utils/withBase";
-import config from "@/config";
+import config, { GOOGLE_ANALYTICS_ID } from "@/config";
 import CookieConsent from "@/components/CookieConsent.astro";
 import "@/styles/global.css";
 
@@ -40,8 +40,15 @@ const rssHref = getRelativeLocaleUrl(
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/png" href={getAssetPath("/assets/red-sun-logo-tate.png")} />
-    <link rel="apple-touch-icon" href={getAssetPath("/assets/red-sun-logo-tate.png")} />
+    <link
+      rel="icon"
+      type="image/png"
+      href={getAssetPath("/assets/red-sun-logo-tate.png")}
+    />
+    <link
+      rel="apple-touch-icon"
+      href={getAssetPath("/assets/red-sun-logo-tate.png")}
+    />
     <link rel="canonical" href={canonicalURL} />
     <meta name="generator" content={Astro.generator} />
 
@@ -99,6 +106,83 @@ const rssHref = getRelativeLocaleUrl(
         />
       )
     }
+
+    <!-- Google Analytics 4 (Privacy Governed) -->
+    <script is:inline define:vars={{ gaId: GOOGLE_ANALYTICS_ID }}>
+      if (gaId) {
+        function loadGoogleAnalytics(id) {
+          if (window.__ga_loaded) return;
+          window.__ga_loaded = true;
+
+          const script = document.createElement("script");
+          script.async = true;
+          script.src = `https://www.googletagmanager.com/gtag/js?id=${id}`;
+          document.head.appendChild(script);
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            window.dataLayer.push(arguments);
+          }
+          window.gtag = gtag;
+          gtag("js", new Date());
+          gtag("config", id, { anonymize_ip: true });
+        }
+
+        function checkConsentAndLoad() {
+          try {
+            const stored = localStorage.getItem("rsj_cookie_consent");
+            if (stored) {
+              const consent = JSON.parse(stored);
+              if (consent && consent.analytics) {
+                loadGoogleAnalytics(gaId);
+              }
+            }
+          } catch {}
+        }
+
+        // Initial execution on load
+        checkConsentAndLoad();
+
+        // Real-time update from CookieConsent banner
+        window.addEventListener("cookieConsentUpdated", event => {
+          try {
+            const consent =
+              event.detail ||
+              JSON.parse(localStorage.getItem("rsj_cookie_consent") || "{}");
+            if (consent && consent.analytics) {
+              loadGoogleAnalytics(gaId);
+              if (typeof window.gtag === "function") {
+                window.gtag("consent", "update", {
+                  analytics_storage: "granted",
+                });
+              }
+            } else {
+              if (typeof window.gtag === "function") {
+                window.gtag("consent", "update", {
+                  analytics_storage: "denied",
+                });
+              }
+            }
+          } catch {}
+        });
+
+        // Astro View Transitions (ClientRouter) support
+        let isFirstLoad = true;
+        document.addEventListener("astro:page-load", () => {
+          checkConsentAndLoad();
+          if (isFirstLoad) {
+            isFirstLoad = false;
+            return;
+          }
+          if (window.__ga_loaded && typeof window.gtag === "function") {
+            window.gtag("event", "page_view", {
+              page_title: document.title,
+              page_location: window.location.href,
+            });
+          }
+        });
+      }
+    </script>
 
     <!--
       Inline FOUC-prevention script: sets data-theme on <html> before

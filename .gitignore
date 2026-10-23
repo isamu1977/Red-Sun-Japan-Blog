@@ -31,3 +31,9 @@ Thumbs.db
 
 # Docker Compose (overrides locais)
 compose.override.yaml
+
+# Ferramentas e Agentes de IA
+.agents/
+.opencode/
+.playwright-mcp/
+

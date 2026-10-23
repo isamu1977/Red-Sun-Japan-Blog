@@ -10,19 +10,23 @@ import { PUBLIC_GOOGLE_SITE_VERIFICATION } from "astro:env/client";
 
 const DEFAULT_OG_IMAGE = "default-og.jpg";
 
+export const GOOGLE_ANALYTICS_ID = "G-N1L2NHE1PC";
+
 export const SITE = {
   ...userConfig.site,
   title: "Red Sun Japan",
   author: "Red Sun Japan",
   profile: "https://www.youtube.com/@redsunjapan",
   desc: "Chronicles of Feudal Japan, Samurai Legends, and Dark Folklore.",
-  description: "Chronicles of Feudal Japan, Samurai Legends, and Dark Folklore.",
+  description:
+    "Chronicles of Feudal Japan, Samurai Legends, and Dark Folklore.",
   ogImage: userConfig.site.ogImage ?? DEFAULT_OG_IMAGE,
   lang: userConfig.site.lang ?? "en",
   timezone: userConfig.site.timezone ?? "Asia/Tokyo",
   dir: userConfig.site.dir ?? "ltr",
   googleVerification:
     userConfig.site.googleVerification || PUBLIC_GOOGLE_SITE_VERIFICATION,
+  googleAnalyticsId: GOOGLE_ANALYTICS_ID,
 };
 
 const config: ResolvedAstroPaperConfig = {

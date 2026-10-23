@@ -35,6 +35,11 @@ export default defineAstroPaperConfig({
       linkTitle: "Red Sun Japan on YouTube",
     },
     {
+      name: "kofi",
+      url: "https://ko-fi.com/redsunjapan",
+      linkTitle: "Support Red Sun Japan on Ko-fi",
+    },
+    {
       name: "instagram",
       url: "https://www.instagram.com/redsunjapan_official/",
       linkTitle: "Red Sun Japan on Instagram",
