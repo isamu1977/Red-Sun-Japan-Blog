@@ -12,6 +12,13 @@ const DEFAULT_OG_IMAGE = "default-og.jpg";
 
 export const GOOGLE_ANALYTICS_ID = "G-N1L2NHE1PC";
 
+export const NEWSLETTER_CONFIG = {
+  listmonkUrl:
+    import.meta.env.PUBLIC_LISTMONK_URL || "https://newsletter.redsunjapan.com",
+  listUuid:
+    import.meta.env.PUBLIC_LISTMONK_LIST_UUID || "COLE_O_UUID_DA_SUA_LISTA_AQUI",
+};
+
 export const SITE = {
   ...userConfig.site,
   title: "Red Sun Japan",

@@ -23,7 +23,8 @@ const currentYear = new Date().getFullYear();
 
 <footer
   class:list={[
-    "mt-20 w-full border-t border-stone-300 bg-[#fbf9f5] pt-12 pb-8 text-stone-700 dark:border-[#27272a] dark:bg-[#0f0f11] dark:text-[#a1a1aa]",
+    "w-full border-t border-stone-300 bg-[#fbf9f5] pt-12 pb-8 text-stone-700 dark:border-[#27272a] dark:bg-[#0f0f11] dark:text-[#a1a1aa]",
+    noMarginTop ? "mt-0" : "mt-20",
     { "mt-auto": !noMarginTop },
     className,
   ]}

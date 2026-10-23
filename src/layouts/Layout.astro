@@ -6,6 +6,8 @@ import { resolveDefaultOgImagePath } from "@/utils/resolveDefaultOgImagePath";
 import { getAssetPath } from "@/utils/withBase";
 import config, { GOOGLE_ANALYTICS_ID } from "@/config";
 import CookieConsent from "@/components/CookieConsent.astro";
+import NewsletterBox from "@/components/NewsletterBox.astro";
+import Footer from "@/components/Footer.astro";
 import "@/styles/global.css";
 
 type Props = {
@@ -13,6 +15,7 @@ type Props = {
   description?: string;
   ogImage?: string;
   canonicalURL?: string;
+  showNewsletter?: boolean;
 };
 
 const { site } = config;
@@ -22,6 +25,7 @@ const {
   description = site.description,
   ogImage = resolveDefaultOgImagePath(config),
   canonicalURL = new URL(Astro.url.pathname, Astro.site).href,
+  showNewsletter = true,
 } = Astro.props;
 
 const socialImageURL = new URL(ogImage, Astro.site ?? Astro.url);
@@ -206,6 +210,11 @@ const rssHref = getRelativeLocaleUrl(
     class="bg-background font-app text-foreground selection:bg-accent/75 selection:text-accent-foreground flex min-h-svh flex-col"
   >
     <slot />
+
+    {showNewsletter && <NewsletterBox />}
+
+    <Footer class={showNewsletter ? "mt-0" : undefined} />
+
     <CookieConsent />
     <script>
       import "@/scripts/theme";

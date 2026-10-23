@@ -2,7 +2,6 @@
 import { type CollectionEntry, getCollection, render } from "astro:content";
 import PostLayout from "@/layouts/PostLayout.astro";
 import Header from "@/components/Header.astro";
-import Footer from "@/components/Footer.astro";
 import Datetime from "@/components/Datetime.astro";
 import Tag from "@/components/Tag.astro";
 import Card from "@/components/Card.astro";
@@ -317,7 +316,6 @@ const relatedPosts = scoredPosts.slice(0, 3).map(sp => sp.post);
 
     <AdjacentPostNav {prevPost} {nextPost} />
   </main>
-  <Footer />
 </PostLayout>
 
 <script is:inline>
