@@ -1,7 +1,7 @@
 ---
 title: "Hoichi the Earless: The Blind Biwa Priest of Akamagaseki"
 author: "Red Sun Japan"
-pubDatetime: 2026-09-27T00:00:00Z
+pubDatetime: 2026-10-20T00:00:00Z
 description: "A blind biwa priest is summoned nightly to play for ghostly nobles in Akamagaseki, a chilling Edo-period kaidan from Japanese folklore."
 tags:
   - "kaidan"
