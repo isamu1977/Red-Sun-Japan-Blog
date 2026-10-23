@@ -16,7 +16,7 @@ export const NEWSLETTER_CONFIG = {
   listmonkUrl:
     import.meta.env.PUBLIC_LISTMONK_URL || "https://newsletter.redsunjapan.com",
   listUuid:
-    import.meta.env.PUBLIC_LISTMONK_LIST_UUID || "COLE_O_UUID_DA_SUA_LISTA_AQUI",
+    import.meta.env.PUBLIC_LISTMONK_LIST_UUID || "a86b646-9e7d-47e6-ad0c-3c9185bfc881",
 };
 
 export const SITE = {
