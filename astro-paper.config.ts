@@ -14,7 +14,11 @@ export default defineAstroPaperConfig({
     dir: "ltr",
   },
   posts: {
-    perPage: 4,
+    // The Posts listing grid is `lg:grid-cols-3` (src/pages/posts/[...page].astro).
+    // perPage MUST be a multiple of 3 or the last row renders with empty grid
+    // slots (e.g. perPage 4 -> 3 cards + 1 card + 2 holes).
+    // 6 = two full rows of 3, no gaps.
+    perPage: 6,
     perIndex: 4,
     scheduledPostMargin: 15 * 60 * 1000,
   },
