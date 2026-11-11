@@ -15,7 +15,7 @@ const { posts } = Astro.props;
 const locale = Astro.currentLocale ?? config.site.lang;
 const allPostsUrl = getRelativeLocaleUrl(locale, "posts");
 
-const items = posts.slice(0, 3).map((post, idx) => {
+const items = posts.slice(0, 4).map((post, idx) => {
   const rawCover = post.data.heroImage ?? post.data.ogImage;
   const coverSrc =
     typeof rawCover === "string"
@@ -45,7 +45,7 @@ const items = posts.slice(0, 3).map((post, idx) => {
       aria-labelledby="trending-lore-heading"
     >
       <div>
-        <header class="flex items-center gap-2.5 border-b border-stone-200/75 pb-3.5 dark:border-[#27272a]/80">
+        <header class="flex items-center gap-2.5 border-b border-stone-200 pb-3.5 dark:border-[#27272a]">
           <span aria-hidden="true" class="relative inline-flex size-2 shrink-0">
             <span class="absolute inset-0 animate-ping rounded-full bg-[#b91c1c]/40" />
             <span class="absolute inset-0 size-2 rounded-full bg-[#b91c1c]" />
@@ -58,22 +58,22 @@ const items = posts.slice(0, 3).map((post, idx) => {
           </h2>
           <span
             aria-hidden="true"
-            class="ml-auto font-mono text-xs uppercase tracking-wider text-stone-400"
+            class="ml-auto font-mono text-xs uppercase tracking-wider text-stone-400 dark:text-[#71717a]"
           >
-            / Top 3
+            / TOP {items.length}
           </span>
         </header>
 
-        <ul class="divide-y divide-stone-200/75 dark:divide-[#27272a]/80">
+        <ul class="divide-y divide-stone-200 dark:divide-[#27272a]">
           {items.map(item => (
-            <li class="group relative flex items-start gap-3.5 py-4 first:pt-4 last:pb-2">
+            <li class="group relative flex items-start gap-3.5 py-3.5 sm:py-4 first:pt-3.5 sm:first:pt-4 last:pb-1 sm:last:pb-2">
               <a
                 href={item.url}
                 tabindex="-1"
                 aria-hidden="true"
-                class="relative w-20 sm:w-22 shrink-0 overflow-hidden rounded-lg bg-stone-100 dark:bg-[#121214]"
+                class="relative w-28 sm:w-32 aspect-video shrink-0 overflow-hidden rounded-lg border border-stone-200/40 bg-stone-100 dark:border-[#27272a] dark:bg-[#121214]"
               >
-                <div class="aspect-[4/3] w-full">
+                <div class="size-full">
                   {item.coverSrc ? (
                     <img
                       src={item.coverSrc}
@@ -104,7 +104,7 @@ const items = posts.slice(0, 3).map((post, idx) => {
                 </div>
 
                 <a href={item.url} class="mt-1 block focus-visible:outline-none">
-                  <h3 class="line-clamp-2 font-display text-sm font-semibold leading-snug text-stone-900 transition-colors duration-200 group-hover:text-[#b91c1c] dark:text-[#e2ded7] dark:group-hover:text-[#ef4444]">
+                  <h3 class="line-clamp-2 font-display text-sm sm:text-[15px] font-semibold leading-snug text-stone-900 transition-colors duration-200 hover:text-[#b91c1c] group-hover:text-[#b91c1c] dark:text-[#e2ded7] dark:hover:text-[#ef4444] dark:group-hover:text-[#ef4444]">
                     {item.title}
                   </h3>
                 </a>
@@ -120,7 +120,7 @@ const items = posts.slice(0, 3).map((post, idx) => {
         </ul>
       </div>
 
-      <footer class="mt-4 border-t border-stone-200/75 pt-3 dark:border-[#27272a]/80">
+      <footer class="mt-4 border-t border-stone-200 pt-4 dark:border-[#27272a]">
         <a
           href={allPostsUrl}
           class="group/link flex items-center justify-between font-mono text-xs font-semibold uppercase tracking-wider text-stone-500 transition-colors hover:text-[#b91c1c] dark:text-[#8f8b84] dark:hover:text-[#ef4444]"

@@ -25,10 +25,10 @@ const sortedPosts = getSortedPosts(posts);
 const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
 const heroPost = featuredPosts[0] ?? sortedPosts[0];
 
-// Identify Trending Chronicles: next 3 chronologically most recent after the hero
+// Identify Trending Chronicles: next 4 chronologically most recent after the hero
 const trendingPosts = sortedPosts
   .filter(p => p.id !== heroPost?.id)
-  .slice(0, 3);
+  .slice(0, 4);
 
 // Grid posts: exclude hero + trending to avoid duplicate presentation
 const excludedIds = new Set<string>([
@@ -73,8 +73,8 @@ const categories = [
       heroPost && (
         <section id="hero-article">
           <div class="mb-12 grid grid-cols-1 items-stretch gap-8 lg:grid-cols-12">
-            <!-- Main column: Featured Chronicle (7 of 12 on lg, 8 of 12 on xl) -->
-            <div class="flex flex-col lg:col-span-7 xl:col-span-8">
+            <!-- Main column: Featured Chronicle (8 of 12 on lg) -->
+            <div class="flex flex-col lg:col-span-8">
               <article
                 id="hero-feature-card"
                 class="flex h-full flex-col justify-between gap-6 rounded-2xl border border-[#ded7cb] bg-white p-5 sm:p-6 shadow-sm dark:border-[#27272a] dark:bg-[#161619]"
@@ -163,8 +163,8 @@ const categories = [
               </article>
             </div>
 
-            <!-- Sidebar column: Trending Chronicles (5 of 12 on lg, 4 of 12 on xl) -->
-            <div class="flex flex-col lg:col-span-5 xl:col-span-4">
+            <!-- Sidebar column: Trending Chronicles (4 of 12 on lg) -->
+            <div class="flex flex-col lg:col-span-4">
               <TrendingSidebar posts={trendingPosts} />
             </div>
           </div>
