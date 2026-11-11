@@ -41,91 +41,90 @@ const items = posts.slice(0, 4).map((post, idx) => {
 {
   items.length > 0 && (
     <aside
-      class="flex h-full flex-col justify-between rounded-2xl border border-[#ded7cb] bg-white p-5 sm:p-6 shadow-sm dark:border-[#27272a] dark:bg-[#161619]"
+      class="h-full flex flex-col justify-between bg-white dark:bg-stone-900/40 border border-[#ded7cb] dark:border-stone-800/80 rounded-2xl p-5 sm:p-6 backdrop-blur-sm shadow-sm dark:shadow-none"
       aria-labelledby="trending-lore-heading"
     >
-      <div>
-        <header class="flex items-center gap-2.5 border-b border-stone-200 pb-3.5 dark:border-[#27272a]">
+      <!-- Cabeçalho -->
+      <header class="shrink-0 pb-3 border-b border-stone-200 dark:border-stone-800 flex items-center justify-between text-xs tracking-widest font-mono text-stone-500 dark:text-stone-400">
+        <div class="flex items-center gap-2">
           <span aria-hidden="true" class="relative inline-flex size-2 shrink-0">
             <span class="absolute inset-0 animate-ping rounded-full bg-[#b91c1c]/40" />
             <span class="absolute inset-0 size-2 rounded-full bg-[#b91c1c]" />
           </span>
           <h2
             id="trending-lore-heading"
-            class="font-display text-xs font-bold uppercase tracking-[0.22em] text-stone-900 dark:text-[#e2ded7]"
+            class="font-display text-xs font-bold uppercase tracking-widest text-stone-900 dark:text-stone-200"
           >
             Trending Lore
           </h2>
-          <span
-            aria-hidden="true"
-            class="ml-auto font-mono text-xs uppercase tracking-wider text-stone-400 dark:text-[#71717a]"
-          >
-            / TOP {items.length}
-          </span>
-        </header>
+        </div>
+        <span
+          aria-hidden="true"
+          class="text-stone-400 dark:text-stone-400"
+        >
+          / TOP {items.length}
+        </span>
+      </header>
 
-        <ul class="divide-y divide-stone-200 dark:divide-[#27272a]">
-          {items.map(item => (
-            <li class="group relative flex items-start gap-3.5 py-3.5 sm:py-4 first:pt-3.5 sm:first:pt-4 last:pb-1 sm:last:pb-2">
-              <a
-                href={item.url}
-                tabindex="-1"
-                aria-hidden="true"
-                class="relative w-28 sm:w-32 aspect-video shrink-0 overflow-hidden rounded-lg border border-stone-200/40 bg-stone-100 dark:border-[#27272a] dark:bg-[#121214]"
-              >
-                <div class="size-full">
-                  {item.coverSrc ? (
-                    <img
-                      src={item.coverSrc}
-                      alt=""
-                      loading="lazy"
-                      decoding="async"
-                      class="size-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
-                    />
-                  ) : (
-                    <div class="flex size-full items-center justify-center bg-stone-100 text-stone-400 dark:bg-[#18181b] dark:text-[#71717a]">
-                      <span class="font-display text-[10px] tracking-widest uppercase">
-                        RSJ
-                      </span>
-                    </div>
-                  )}
+      <!-- Equalização e Espaçamento da Lista dos 4 Cards -->
+      <ul class="flex-1 flex flex-col justify-between py-3 divide-y divide-stone-200/60 dark:divide-stone-800/60">
+        {items.map(item => (
+          <li class="group flex items-center gap-4 py-2.5 transition-all duration-200 hover:bg-stone-100/60 dark:hover:bg-stone-800/20 rounded-lg px-2 -mx-2">
+            <a
+              href={item.url}
+              tabindex="-1"
+              aria-hidden="true"
+              class="w-24 sm:w-28 aspect-video rounded-md overflow-hidden shrink-0 bg-stone-100 dark:bg-stone-950 border border-stone-200 dark:border-stone-800 relative"
+            >
+              {item.coverSrc ? (
+                <img
+                  src={item.coverSrc}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+              ) : (
+                <div class="flex size-full items-center justify-center bg-stone-100 text-stone-400 dark:bg-stone-950 dark:text-stone-500">
+                  <span class="font-display text-[10px] tracking-widest uppercase">
+                    RSJ
+                  </span>
                 </div>
-                <div class="pointer-events-none absolute inset-0 bg-black/10 transition-opacity duration-300 group-hover:opacity-0" />
+              )}
+              <div class="pointer-events-none absolute inset-0 bg-black/10 transition-opacity duration-300 group-hover:opacity-0" />
+            </a>
+
+            <div class="flex-1 min-w-0 flex flex-col justify-center gap-1">
+              <div class="flex items-center justify-between text-[10px] font-mono uppercase tracking-wider text-[#b91c1c] font-semibold">
+                <span class="truncate">{item.primaryTag}</span>
+                <span class="text-stone-400 dark:text-stone-500 font-normal shrink-0">
+                  #{item.rank}
+                </span>
+              </div>
+
+              <a href={item.url} class="block focus-visible:outline-none">
+                <h3 class="text-xs sm:text-[13px] font-display font-semibold text-stone-900 dark:text-stone-200 group-hover:text-[#b91c1c] transition-colors line-clamp-2 leading-snug min-h-[2.35rem] flex items-center">
+                  {item.title}
+                </h3>
               </a>
 
-              <div class="min-w-0 flex-1">
-                <div class="flex items-center justify-between gap-1.5">
-                  <span class="font-mono text-[10px] font-bold uppercase tracking-wider text-[#b91c1c] dark:text-[#ef4444]">
-                    {item.primaryTag}
-                  </span>
-                  <span class="font-mono text-[10px] font-semibold text-stone-400 dark:text-[#52525b]">
-                    #{item.rank}
-                  </span>
-                </div>
-
-                <a href={item.url} class="mt-1 block focus-visible:outline-none">
-                  <h3 class="line-clamp-2 font-display text-sm sm:text-[15px] font-semibold leading-snug text-stone-900 transition-colors duration-200 hover:text-[#b91c1c] group-hover:text-[#b91c1c] dark:text-[#e2ded7] dark:hover:text-[#ef4444] dark:group-hover:text-[#ef4444]">
-                    {item.title}
-                  </h3>
-                </a>
-
-                <div class="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-[11px] text-stone-500 dark:text-[#71717a]">
-                  <Datetime pubDatetime={item.pubDatetime} timezone={item.timezone} size="xs" />
-                  <span aria-hidden="true" class="opacity-60">•</span>
-                  <span>{item.readingTime}</span>
-                </div>
+              <div class="text-[11px] font-mono text-stone-500 dark:text-stone-500 flex items-center gap-1.5">
+                <Datetime pubDatetime={item.pubDatetime} timezone={item.timezone} size="xs" />
+                <span aria-hidden="true" class="opacity-60">•</span>
+                <span>{item.readingTime}</span>
               </div>
-            </li>
-          ))}
-        </ul>
-      </div>
+            </div>
+          </li>
+        ))}
+      </ul>
 
-      <footer class="mt-4 border-t border-stone-200 pt-4 dark:border-[#27272a]">
+      <!-- Rodapé -->
+      <footer class="shrink-0 pt-3 border-t border-stone-200 dark:border-stone-800 mt-auto flex items-center justify-between text-xs font-mono text-stone-500 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200 transition-colors">
         <a
           href={allPostsUrl}
-          class="group/link flex items-center justify-between font-mono text-xs font-semibold uppercase tracking-wider text-stone-500 transition-colors hover:text-[#b91c1c] dark:text-[#8f8b84] dark:hover:text-[#ef4444]"
+          class="group/link flex items-center justify-between w-full"
         >
-          <span>Explore All Chronicles</span>
+          <span>EXPLORE ALL CHRONICLES</span>
           <span class="transition-transform duration-200 group-hover/link:translate-x-1" aria-hidden="true">→</span>
         </a>
       </footer>
