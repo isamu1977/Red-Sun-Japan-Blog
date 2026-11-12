@@ -1,7 +1,7 @@
 ---
 title: "Ikiryo: The Living Wrath That Strangled an Edo Clerk"
 author: "Red Sun Japan"
-pubDatetime: 2026-09-27T00:00:00Z
+pubDatetime: 2026-11-12T00:00:00Z
 description: "A kaidan from Edo period Reigan-jima: an ikiryo, the living wrath that strangled a clerk night after night, born not from a ghost but a secret human hatred."
 tags:
   - "kaidan"
