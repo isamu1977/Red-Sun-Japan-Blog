@@ -7,7 +7,8 @@ tags:
   - "kaidan"
   - "folklore"
   - "edo-period"
-  - "samurai"
+  - "lafcadio-hearn"
+  - "ikiryo"
 draft: false
 featured: false
 ogImage: "/images/posts/ikiryo-the-living-wrath-that-strangled-a-clerk/hero.jpeg"
