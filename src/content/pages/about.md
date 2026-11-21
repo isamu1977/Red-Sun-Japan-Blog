@@ -1,16 +1,24 @@
 ---
 title: "About Red Sun Japan"
-description: "Chronicles of Feudal Japan, Samurai Legends, and Dark Folklore."
+description: "The digital archive of authentic Japanese horror, dark folklore, Kaidan, Yokai chronicles, and eerie urban legends."
 ---
 
-Welcome to **Red Sun Japan**, an independent historical chronicling and documentary project devoted to the shadows, philosophy, and martial traditions of feudal Japan.
+Welcome to **Red Sun Japan**, an independent archival research and documentary project devoted to authentic Japanese horror, dark folklore, and supernatural chronicles unearthed directly from Japanese historical records.
 
-## The Vision: Beyond the Shogun's Court
+## The Vision: Into the Shadows of Old and Modern Japan
 
-Behind the romanticized tropes of popular media lies a historical reality forged in iron, philosophical austerity, and profound spiritual dread. Red Sun Japan was established to explore the unfiltered chronicles of the Sengoku and Edo periods, bringing forth the forgotten realities of feudal warfare alongside Japan's richest supernatural oral traditions:
+Behind the sanitized versions of popular culture lies an unsettling tradition of ghost lore, cursed relics, and regional mysteries preserved in centuries-old manuscripts and local town chronicles. Red Sun Japan was established to explore the eerie realm of the unexplained—translating and adapting forgotten accounts from the Heian, Edo, and Meiji periods alongside chilling modern Japanese urban legends.
 
-- **Martial Realism & Sengoku Warfare**: Examining the tactical brutality, armor craftsmanship, clan betrayals, and authentic battle doctrine that governed samurai life between the 12th and 19th centuries.
-- **Dark Folklore (Yokai & Kaidan)**: Delving into historical accounts of cursed relics, restless apparitions (*Onryo*), and terrifying night parades (*Hyakki Yagyo*) preserved in classical treatises such as the *Konjaku Monogatarishu*, *Hokusai Manga*, and *Ugetsu Monogatari*.
-- **The Philosophy of the Edge**: Analyzing the spiritual ethos of *Bushido*, the ascetic rigor of Zen in swordsmanship, and the political underworld of masterless *ronin* and espionage (*shinobi*).
+Rather than retelling the same overused stories already circulating in English, our work goes directly to primary Japanese sources—including Aozora Bunko, the National Diet Library, classical Edo treatises, and municipal folklore archives—bringing untranslated tales to international readers with scholarly care and atmospheric storytelling.
 
-Every written chronicle and documentary video produced by Red Sun Japan pairs rigorous archival research with solemn, immersive storytelling worthy of the era's grand traditions.
+## Our Three Editorial Pillars
+
+- **Classical Kaidan & Vengeful Spirits (怪談 • 幽霊)**: Forgotten ghost tales, cursed artifacts, and restless apparitions preserved in classical works such as Asai Ryōi's *Otogi Bōko*, Ueda Akinari's *Ugetsu Monogatari*, and *Konjaku Monogatarishū*.
+- **Yōkai Chronicles & Cursed Folklore (妖怪)**: Deep archival investigations into shapeshifters, mountain spirits, river entities, and haunted grounds recorded in regional Japanese treatises and woodblock encyclopedias.
+- **Japanese Urban Legends & Modern Shadows**: Eerie contemporary folklore, haunted tunnels, cursed stations, and late-night accounts whispered across Shōwa- and Heisei-era Japan.
+
+## The Archive Ecosystem
+
+Every chronicle produced by Red Sun Japan pairs rigorous archival research with solemn, immersive documentary narration. Watch the full visual essays on our official YouTube channel (`@redsunjapan`), read the expanded historical companions and source notes right here on `redsunjapan.com`, or explore our illustrated print, digital, and unabridged audiobook editions in the *Chronicles of the Red Sun* series.
+
+Turn down the lights, put on your headphones, and step into the shadows.

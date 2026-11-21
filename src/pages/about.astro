@@ -1,5 +1,6 @@
 ---
 import { getEntry, render } from "astro:content";
+import { getRelativeLocaleUrl } from "astro:i18n";
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
@@ -7,6 +8,7 @@ import Main from "@/components/Main.astro";
 import config from "@/config";
 
 const about = await getEntry("pages", "about");
+const locale = Astro.currentLocale ?? config.site.lang;
 
 if (!about) {
   throw new Error(
@@ -30,8 +32,8 @@ const { Content } = await render(about);
   <Main pageTitle={about.data.title} class="app-prose">
     <Content />
 
-    <div class="not-prose my-10 rounded-lg border border-[#27272b] bg-[#161619] p-6 shadow-md">
-      <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+    <div class="not-prose my-10 rounded-xl border border-[#ded7cb] bg-[#f3efe6]/70 p-6 shadow-md dark:border-[#27272b] dark:bg-[#161619]">
+      <div class="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
         <div class="flex items-start gap-4">
           <div class="rounded-md bg-[#b91c1c]/15 p-3 text-[#b91c1c]">
             <svg
@@ -52,22 +54,28 @@ const { Content } = await render(about);
             </svg>
           </div>
           <div>
-            <h2 class="text-xl font-bold tracking-tight text-[#e2ded7]">
-              Official YouTube Channel
+            <h2 class="font-display text-xl font-bold tracking-tight text-stone-900 dark:text-[#e2ded7]">
+              Explore the Red Sun Archive
             </h2>
-            <p class="mt-1 text-sm text-[#928f88]">
-              Watch our cinematic documentaries, original narrations, and feudal chronicles on <span class="font-medium text-[#e2ded7]">@redsunjapan</span>.
+            <p class="mt-1 text-sm text-stone-600 dark:text-[#928f88]">
+              Watch our documentary Kaidan essays on <span class="font-medium text-stone-900 dark:text-[#e2ded7]">@redsunjapan</span> or collect our illustrated books and unabridged audiobooks.
             </p>
           </div>
         </div>
-        <div class="shrink-0 sm:self-center">
+        <div class="flex shrink-0 flex-wrap items-center gap-3 sm:self-center">
+          <a
+            href={getRelativeLocaleUrl(locale, "collections")}
+            class="inline-flex items-center gap-2 rounded border border-[#b91c1c] bg-transparent px-4 py-2 text-sm font-medium text-[#b91c1c] transition-colors hover:bg-[#b91c1c] hover:text-white dark:text-[#f87171] dark:hover:text-white"
+          >
+            <span>Explore Our Books &amp; Audiobooks</span>
+          </a>
           <a
             href="https://www.youtube.com/@redsunjapan"
             target="_blank"
             rel="noopener noreferrer"
             class="inline-flex items-center gap-2 rounded bg-[#b91c1c] px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-[#9e1b1b] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#b91c1c]"
           >
-            <span>Visit @redsunjapan</span>
+            <span>Watch on YouTube</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"

@@ -1,7 +1,7 @@
 ---
 title: "The Peony Lantern: Edo Japan's Most Enduring Ghost Story"
 author: "Red Sun Japan"
-pubDatetime: 2026-10-13T00:00:00Z
+pubDatetime: 2026-10-13T23:33:42+09:00
 description: "Inside the 1666 Edo kaidan of the Peony Lantern (Botan Dōrō) — a masterless samurai, a ghostly woman, and the talisman that dissolved in the rain."
 tags:
   - "kaidan"
@@ -14,6 +14,7 @@ draft: false
 featured: false
 ogImage: "/images/posts/the-peony-lantern/hero.jpeg"
 heroImage: "/images/posts/the-peony-lantern/hero.jpeg"
+youtube_video_id: "iVTK8nFJ2ng"
 ---
 
 A red lantern does not glow like other lanterns. Most paper lamps cast a soft amber halo, the color of tea left too long in the cup. This one, according to the earliest written account, burned the deep bruised red of peony petals seen through closed eyelids — and it cast no shadow on the ground beneath it. That detail alone, buried in a seventeenth-century manuscript, has kept readers awake for nearly four hundred years.

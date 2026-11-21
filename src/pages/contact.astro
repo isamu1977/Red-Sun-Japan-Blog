@@ -4,6 +4,11 @@ import Header from "@/components/Header.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
 import Main from "@/components/Main.astro";
 import config from "@/config";
+import IconYouTube from "@/assets/icons/socials/youtube.svg";
+import IconFacebook from "@/assets/icons/socials/facebook.svg";
+import IconInstagram from "@/assets/icons/socials/instagram.svg";
+import IconThreads from "@/assets/icons/socials/threads.svg";
+import IconPinterest from "@/assets/icons/socials/pinterest.svg";
 
 const pageTitle = "Get in Touch";
 const pageDescription =
@@ -24,25 +29,35 @@ const socialChannels = [
     handle: "@redsunjapan",
     url: "https://www.youtube.com/@redsunjapan",
     desc: "Long-form documentaries, premieres on Tuesdays and Thursdays.",
-    primary: true,
+    icon: "youtube",
+  },
+  {
+    name: "Facebook",
+    handle: "facebook.com/redsunjapan",
+    url: "https://www.facebook.com/redsunjapan",
+    desc: "Full-length documentary videos, Reels, and community discussions.",
+    icon: "facebook",
   },
   {
     name: "Instagram",
     handle: "@redsunjapan_official",
     url: "https://www.instagram.com/redsunjapan_official/",
     desc: "Visual plates, production stills, and short-form folklore.",
+    icon: "instagram",
+  },
+  {
+    name: "Threads",
+    handle: "@redsunjapan_official",
+    url: "https://www.threads.net/@redsunjapan_official",
+    desc: "Bite-sized Kaidan threads, archival notes, and chronicle discussions.",
+    icon: "threads",
   },
   {
     name: "Pinterest",
     handle: "@redsunjapan",
     url: "https://jp.pinterest.com/redsunjapan/",
-    desc: "Curated boards of ukiyo-e, emakimono, and period art references.",
-  },
-  {
-    name: "X (Twitter)",
-    handle: "@redsunjapan",
-    url: "https://x.com/redsunjapan",
-    desc: "Release notes, archival finds, and community conversation.",
+    desc: "Curated boards of ukiyo-e, emakimono, and dark folklore art references.",
+    icon: "pinterest",
   },
 ];
 ---
@@ -233,11 +248,20 @@ const socialChannels = [
             href={s.url}
             target="_blank"
             rel="noopener noreferrer"
-            class="block rounded-lg border border-[#27272a] bg-[#161619] p-4 transition-colors hover:border-[#b91c1c]"
+            class="group block rounded-lg border border-[#27272a] bg-[#161619] p-4 transition-colors hover:border-[#b91c1c]"
           >
-            <p class="text-xs uppercase tracking-wider text-[#928f88]">
-              {s.name}
-            </p>
+            <div class="flex items-center justify-between gap-2">
+              <p class="text-xs uppercase tracking-wider text-[#928f88]">
+                {s.name}
+              </p>
+              <span class="text-[#928f88] transition-colors group-hover:text-[#b91c1c]">
+                {s.icon === "youtube" && <IconYouTube class="size-4" />}
+                {s.icon === "facebook" && <IconFacebook class="size-4" />}
+                {s.icon === "instagram" && <IconInstagram class="size-4" />}
+                {s.icon === "threads" && <IconThreads class="size-4" />}
+                {s.icon === "pinterest" && <IconPinterest class="size-4" />}
+              </span>
+            </div>
             <p class="mt-1 font-mono text-sm text-[#e2ded7]">{s.handle}</p>
             <p class="mt-2 text-xs leading-relaxed text-[#928f88]">
               {s.desc}
@@ -249,16 +273,17 @@ const socialChannels = [
 
     <h2>A note on the editorial mission</h2>
     <p>
-      We started Red Sun Japan to make the darker, more solemn chapters
-      of feudal Japan accessible to a global audience without diluting
-      the material. Every message you send us is read by a person who
-      cares about that mission. If you reached out, you are part of why
-      the channel can keep going.
+      We started Red Sun Japan to preserve and share the darker, more solemn
+      side of Japanese folklore, Kaidan, and supernatural lore with a global
+      audience—translated directly from primary sources without diluting the
+      material. Every message you send us is read by a person who cares about
+      that mission. If you reached out, you are part of why the channel can
+      keep going.
     </p>
     <p>
-      For full data-handling, cookie, and affiliate governance, see our
-      <a href="/privacy/">Privacy Policy</a>,
-      <a href="/cookies/">Cookie Policy</a>, and
+      For full data-handling, cookie, and affiliate governance, see our{" "}
+      <a href="/privacy/">Privacy Policy</a>,{" "}
+      <a href="/cookies/">Cookie Policy</a>, and{" "}
       <a href="/affiliate-disclosure/">Affiliate Disclosure</a>.
     </p>
   </Main>

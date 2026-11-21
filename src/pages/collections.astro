@@ -1,0 +1,474 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import ProductModal from "@/components/ProductModal.astro";
+import storeCatalog from "@/data/storeCatalog.json";
+import { getAssetPath } from "@/utils/withBase";
+import config from "@/config";
+
+type StoreItem = (typeof storeCatalog.items)[number];
+const allItems: StoreItem[] = [
+  ...(storeCatalog.items || []),
+  ...((storeCatalog.prints as StoreItem[]) || []),
+];
+
+const activeSpecificCategories = storeCatalog.categories.filter(
+  (cat) =>
+    cat.id !== "all" && allItems.some((item) => item.category === cat.id)
+);
+const showFilterTabs = activeSpecificCategories.length >= 2;
+const visibleCategories = showFilterTabs
+  ? storeCatalog.categories.filter(
+      (cat) =>
+        cat.id === "all" ||
+        activeSpecificCategories.some((active) => active.id === cat.id)
+    )
+  : [];
+---
+
+<Layout
+  title={`Collections | ${config.site.title}`}
+  description="Illustrated editions, annotated manuscripts, and unabridged late-night audiobooks preserved from feudal Japan."
+>
+  <Header />
+
+  <main id="main-content" class="mx-auto w-full max-w-6xl px-4 pt-10 pb-16 sm:px-6 lg:px-8">
+    <!-- Hero Editorial -->
+    <section class="border-b border-stone-300 pb-10 text-center dark:border-[#27272a]">
+      <span
+        class="inline-block rounded-full border border-[#b91c1c]/30 bg-[#b91c1c]/10 px-3.5 py-1 font-mono text-[11px] font-semibold tracking-[0.25em] text-[#b91c1c] uppercase dark:border-[#dc2626]/40 dark:bg-[#dc2626]/15 dark:text-[#f87171]"
+      >
+        ARCHIVAL PUBLICATIONS
+      </span>
+      <h1
+        class="font-display mt-4 text-3xl font-bold tracking-tight text-stone-900 sm:text-5xl dark:text-[#f7f4ed]"
+      >
+        Chronicles of the Red Sun: Collections
+      </h1>
+      <p
+        class="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-stone-600 sm:text-lg dark:text-stone-400"
+      >
+        Illustrated editions, annotated manuscripts, and unabridged late-night
+        audiobooks preserved from feudal Japan.
+      </p>
+
+      <!-- Interactive Category Filter Tabs (only shown when 2+ categories have items) -->
+      {
+        showFilterTabs && (
+          <div
+            role="tablist"
+            aria-label="Filter collections by format"
+            class="mt-8 inline-flex flex-wrap items-center justify-center gap-2 rounded-2xl border border-stone-300 bg-[#f3efe6]/80 p-1.5 dark:border-[#27272a] dark:bg-[#161619]"
+          >
+            {visibleCategories.map((cat, idx) => (
+              <button
+                type="button"
+                role="tab"
+                aria-selected={idx === 0 ? "true" : "false"}
+                data-filter-category={cat.id}
+                class:list={[
+                  "collection-tab cursor-pointer rounded-xl px-4 py-2 font-mono text-xs font-semibold tracking-wider uppercase transition-all",
+                  idx === 0
+                    ? "bg-[#b91c1c] text-white shadow-sm"
+                    : "text-stone-700 hover:bg-stone-200/70 hover:text-stone-900 dark:text-stone-300 dark:hover:bg-[#27272a] dark:hover:text-white",
+                ]}
+              >
+                {cat.label}
+              </button>
+            ))}
+          </div>
+        )
+      }
+    </section>
+
+    <!-- Editorial Showcase Cards -->
+    <section class="mt-12">
+      <div id="collections-grid" class="mx-auto max-w-5xl space-y-8">
+        {
+          allItems.map((item) => {
+            const coverSrc = getAssetPath(item.coverImage);
+            const itemPayload = JSON.stringify({
+              ...item,
+              coverImage: coverSrc,
+            });
+            const amazonStore = item.stores[0];
+            const pdfStore = item.stores[1];
+            const audioStore = item.stores[2];
+            const hasAmazonUrl = Boolean(
+              amazonStore && amazonStore.url && amazonStore.url.trim() !== ""
+            );
+
+            return (
+              <article
+                data-product-card
+                data-category={item.category}
+                data-product-json={itemPayload}
+                class="grid grid-cols-1 overflow-hidden rounded-2xl border border-stone-300 bg-[#fbf9f5] shadow-md transition-all duration-300 hover:border-[#b91c1c]/60 hover:shadow-xl md:grid-cols-12 dark:border-[#27272a] dark:bg-[#161619] dark:hover:border-[#b91c1c]/70"
+              >
+                <!-- Left Column: Gallery Cover Container -->
+                <div
+                  data-open-product-modal
+                  class="group relative flex cursor-pointer items-center justify-center bg-stone-950/90 p-6 sm:p-8 md:col-span-4 dark:bg-stone-950/85"
+                >
+                  <div class="relative mx-auto w-full max-w-[240px] overflow-hidden rounded-md border border-stone-700/60 shadow-2xl transition-transform duration-300 group-hover:scale-[1.03] aspect-[10/16]">
+                    <img
+                      src={coverSrc}
+                      alt={item.title}
+                      loading="lazy"
+                      decoding="async"
+                      class="h-full w-full object-cover"
+                    />
+                  </div>
+                  <span
+                    class="pointer-events-none absolute right-4 bottom-4 rounded-full border border-white/20 bg-black/75 px-3 py-1 font-mono text-[10px] font-semibold tracking-wider text-white uppercase opacity-0 backdrop-blur-sm transition-opacity duration-200 group-hover:opacity-100"
+                  >
+                    Inspect Edition
+                  </span>
+                </div>
+
+                <!-- Right Column: Editorial Details & All Direct Purchase CTAs -->
+                <div class="flex flex-col justify-between p-6 sm:p-8 md:col-span-8">
+                  <div>
+                    <div class="flex flex-wrap items-center justify-between gap-2">
+                      <span class="rounded bg-[#b91c1c]/12 px-2.5 py-0.5 font-mono text-[10px] font-bold tracking-widest text-[#b91c1c] uppercase dark:bg-[#b91c1c]/20 dark:text-[#f87171]">
+                        {item.badge}
+                      </span>
+                      <span class="font-mono text-sm font-bold text-stone-800 dark:text-amber-400">
+                        {item.priceDisplay}
+                      </span>
+                    </div>
+
+                    <h2
+                      data-open-product-modal
+                      class="font-display mt-3 cursor-pointer text-2xl font-bold leading-snug text-stone-900 transition-colors hover:text-[#b91c1c] md:text-3xl dark:text-[#f7f4ed] dark:hover:text-[#f87171]"
+                    >
+                      {item.title}
+                    </h2>
+                    <p class="mt-1 text-sm italic text-stone-600 dark:text-stone-400">
+                      {item.subtitle}
+                    </p>
+
+                    <p class="mt-4 text-sm leading-relaxed text-stone-700 sm:text-base dark:text-stone-300">
+                      {item.shortDescription}
+                    </p>
+                  </div>
+
+                  <!-- 2x2 Direct Purchase & Inspection Grid -->
+                  <div class="mt-6 grid grid-cols-1 gap-3 pt-2 sm:grid-cols-2">
+                    {/* Button 1: Amazon KDP */}
+                    {hasAmazonUrl && amazonStore ? (
+                      <a
+                        href={amazonStore.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center justify-center rounded-xl bg-[#b91c1c] px-4 py-3 text-center font-mono text-xs font-bold tracking-wider text-white uppercase shadow-sm transition-colors hover:bg-[#991b1b]"
+                      >
+                        {amazonStore.label}
+                      </a>
+                    ) : (
+                      <span class="inline-flex items-center justify-center rounded-xl border border-stone-300 bg-stone-200/70 px-4 py-3 text-center font-mono text-[11px] font-semibold tracking-wider text-stone-600 uppercase dark:border-[#27272a] dark:bg-[#1f1f24] dark:text-stone-400">
+                        Amazon KDP Link Updating Soon
+                      </span>
+                    )}
+
+                    {/* Button 2: Ko-fi Collector's PDF */}
+                    {pdfStore && pdfStore.url ? (
+                      <a
+                        href={pdfStore.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center justify-center rounded-xl border border-[#b91c1c]/60 bg-[#b91c1c]/10 px-4 py-3 text-center font-mono text-xs font-bold tracking-wider text-[#b91c1c] uppercase transition-colors hover:bg-[#b91c1c] hover:text-white dark:border-[#dc2626]/60 dark:bg-[#dc2626]/10 dark:text-[#f87171] dark:hover:bg-[#dc2626] dark:hover:text-white"
+                      >
+                        {pdfStore.label}
+                      </a>
+                    ) : null}
+
+                    {/* Button 3: Ko-fi Unabridged Audiobook */}
+                    {audioStore && audioStore.url ? (
+                      <a
+                        href={audioStore.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center justify-center gap-2 rounded-xl border border-stone-300 bg-transparent px-4 py-2.5 text-center font-mono text-xs font-semibold tracking-wider text-stone-800 uppercase transition-colors hover:border-[#b91c1c] hover:text-[#b91c1c] dark:border-[#3f3f46] dark:text-stone-200 dark:hover:border-[#dc2626] dark:hover:text-white"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="size-4 shrink-0"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        >
+                          <path d="M3 18v-6a9 9 0 0 1 18 0v6" />
+                          <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z" />
+                        </svg>
+                        <span>{audioStore.label}</span>
+                      </a>
+                    ) : null}
+
+                    {/* Button 4: Details & 11 Chapters (Opens Modal) */}
+                    <button
+                      type="button"
+                      data-open-product-modal
+                      class="inline-flex cursor-pointer items-center justify-center rounded-xl border border-stone-300 bg-transparent px-4 py-2.5 text-center font-mono text-xs font-semibold tracking-wider text-stone-800 uppercase transition-colors hover:border-[#b91c1c] hover:text-[#b91c1c] dark:border-[#27272a] dark:text-stone-200 dark:hover:border-[#dc2626] dark:hover:text-white"
+                    >
+                      Details &amp; {item.contents.length} Chapters
+                    </button>
+                  </div>
+                </div>
+              </article>
+            );
+          })
+        }
+      </div>
+    </section>
+
+    <!-- Discrete Direct Support Banner -->
+    <section
+      class="mx-auto mt-16 max-w-5xl rounded-2xl border border-stone-300 bg-[#f3efe6]/70 p-6 sm:p-8 dark:border-[#27272a] dark:bg-[#161619]"
+    >
+      <div
+        class="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center"
+      >
+        <div>
+          <span
+            class="font-mono text-[11px] font-semibold tracking-[0.22em] text-[#b91c1c] uppercase dark:text-[#f87171]"
+          >
+            SUPPORT INDEPENDENT ARCHIVAL TRANSLATIONS
+          </span>
+          <h3
+            class="font-display mt-1 text-xl font-bold text-stone-900 dark:text-[#f7f4ed]"
+          >
+            Help preserve untranslated Edo & Meiji folklore
+          </h3>
+          <p class="mt-1 text-sm text-stone-600 dark:text-stone-400">
+            Every edition and direct contribution on Ko-fi funds archival
+            research, literary translation, and original painterly artwork.
+          </p>
+        </div>
+        <a
+          href="https://ko-fi.com/redsunjapan"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="shrink-0 rounded-xl border border-[#b91c1c] bg-[#b91c1c]/10 px-5 py-2.5 font-mono text-xs font-bold tracking-wider text-[#b91c1c] uppercase transition-colors hover:bg-[#b91c1c] hover:text-white dark:text-[#f87171] dark:hover:text-white"
+        >
+          Support on Ko-fi &rarr;
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <ProductModal />
+</Layout>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    // 1. Category Filter Tabs
+    const tabButtons = document.querySelectorAll<HTMLButtonElement>("[data-filter-category]");
+    const cards = document.querySelectorAll<HTMLElement>("[data-product-card]");
+
+    tabButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const targetCat = btn.dataset.filterCategory || "all";
+
+        tabButtons.forEach((b) => {
+          const isSelected = b === btn;
+          b.setAttribute("aria-selected", isSelected ? "true" : "false");
+          if (isSelected) {
+            b.classList.add("bg-[#b91c1c]", "text-white", "shadow-sm");
+            b.classList.remove(
+              "text-stone-700",
+              "hover:bg-stone-200/70",
+              "hover:text-stone-900",
+              "dark:text-stone-300",
+              "dark:hover:bg-[#27272a]",
+              "dark:hover:text-white"
+            );
+          } else {
+            b.classList.remove("bg-[#b91c1c]", "text-white", "shadow-sm");
+            b.classList.add(
+              "text-stone-700",
+              "hover:bg-stone-200/70",
+              "hover:text-stone-900",
+              "dark:text-stone-300",
+              "dark:hover:bg-[#27272a]",
+              "dark:hover:text-white"
+            );
+          }
+        });
+
+        cards.forEach((card) => {
+          const cardCat = card.dataset.category || "";
+          if (targetCat === "all" || cardCat === targetCat) {
+            card.classList.remove("hidden");
+          } else {
+            card.classList.add("hidden");
+          }
+        });
+      });
+    });
+
+    // 2. Interactive Product Modal
+    const modal = document.getElementById("product-modal");
+    const backdrop = document.getElementById("pm-backdrop");
+    const closeBtn = document.getElementById("pm-close");
+    if (!modal || !backdrop || !closeBtn) return;
+
+    const pmCover = document.getElementById("pm-cover") as HTMLImageElement | null;
+    const pmCoverFallback = document.getElementById("pm-cover-fallback");
+    const pmFallbackTitle = document.getElementById("pm-fallback-title");
+    const pmBadge = document.getElementById("pm-badge");
+    const pmPrice = document.getElementById("pm-price");
+    const pmTitle = document.getElementById("pm-title");
+    const pmSubtitle = document.getElementById("pm-subtitle");
+    const pmDescription = document.getElementById("pm-description");
+    const pmSpecs = document.getElementById("pm-specs");
+    const pmContents = document.getElementById("pm-contents");
+    const pmStores = document.getElementById("pm-stores");
+
+    const closeModal = () => {
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+      document.body.style.overflow = "";
+    };
+
+    const openModal = (item: any) => {
+      if (pmBadge) pmBadge.textContent = item.badge || "";
+      if (pmPrice) pmPrice.textContent = item.priceDisplay || "";
+      if (pmTitle) pmTitle.textContent = item.title || "";
+      if (pmSubtitle) pmSubtitle.textContent = item.subtitle || "";
+      if (pmFallbackTitle) pmFallbackTitle.textContent = item.title || "";
+
+      if (pmCover && pmCoverFallback) {
+        pmCover.classList.remove("hidden");
+        pmCoverFallback.classList.add("hidden");
+        pmCoverFallback.classList.remove("flex");
+        pmCover.onerror = () => {
+          pmCover.classList.add("hidden");
+          pmCoverFallback.classList.remove("hidden");
+          pmCoverFallback.classList.add("flex");
+        };
+        pmCover.src = item.coverImage || "";
+        pmCover.alt = item.title || "";
+      }
+
+      if (pmDescription) {
+        pmDescription.innerHTML = "";
+        (item.fullDescription || []).forEach((pText: string) => {
+          const p = document.createElement("p");
+          p.textContent = pText;
+          pmDescription.appendChild(p);
+        });
+      }
+
+      if (pmSpecs) {
+        pmSpecs.innerHTML = "";
+        (item.specs || []).forEach((spec: { label: string; value: string }) => {
+          const row = document.createElement("div");
+          row.className = "flex flex-col border-b border-[#ded7cb]/70 pb-1.5 last:border-none last:pb-0 dark:border-[#27272a]/80";
+          const dt = document.createElement("dt");
+          dt.className = "font-mono text-[10px] font-semibold uppercase tracking-wider text-stone-500 dark:text-stone-400";
+          dt.textContent = spec.label;
+          const dd = document.createElement("dd");
+          dd.className = "text-xs font-medium text-stone-900 dark:text-stone-200";
+          dd.textContent = spec.value;
+          row.appendChild(dt);
+          row.appendChild(dd);
+          pmSpecs.appendChild(row);
+        });
+      }
+
+      if (pmContents) {
+        pmContents.innerHTML = "";
+        (item.contents || []).forEach((entry: string) => {
+          const li = document.createElement("li");
+          li.className = "leading-relaxed";
+          li.textContent = entry;
+          pmContents.appendChild(li);
+        });
+      }
+
+      if (pmStores) {
+        pmStores.innerHTML = "";
+        (item.stores || []).forEach(
+          (store: { label: string; url?: string; variant?: string; note?: string }) => {
+            const wrapper = document.createElement("div");
+            wrapper.className = "space-y-1";
+            const cleanUrl = (store.url || "").trim();
+
+            if (!cleanUrl) {
+              const badge = document.createElement("div");
+              badge.className =
+                "w-full rounded-xl border border-stone-300 bg-stone-200/70 px-4 py-2.5 text-center font-mono text-xs font-semibold tracking-wider text-stone-600 uppercase dark:border-[#27272a] dark:bg-[#1f1f24] dark:text-stone-400";
+              badge.textContent = "Amazon KDP Link Updating Soon";
+              wrapper.appendChild(badge);
+            } else {
+              const link = document.createElement("a");
+              link.href = cleanUrl;
+              link.target = "_blank";
+              link.rel = "noopener noreferrer";
+              link.textContent = store.label;
+              if (store.variant === "primary") {
+                link.className =
+                  "inline-flex w-full items-center justify-center rounded-xl bg-[#b91c1c] px-4 py-3 text-center font-mono text-xs font-bold tracking-wider text-white uppercase transition-colors hover:bg-[#991b1b]";
+              } else {
+                link.className =
+                  "inline-flex w-full items-center justify-center rounded-xl border border-stone-400 bg-transparent px-4 py-2.5 text-center font-mono text-xs font-semibold tracking-wider text-stone-800 uppercase transition-colors hover:border-[#b91c1c] hover:text-[#b91c1c] dark:border-[#3f3f46] dark:text-stone-200 dark:hover:border-[#dc2626] dark:hover:text-white";
+              }
+              wrapper.appendChild(link);
+            }
+
+            if (store.note) {
+              const noteEl = document.createElement("p");
+              noteEl.className = "text-center text-[11px] text-stone-500 dark:text-stone-400";
+              noteEl.textContent = store.note;
+              wrapper.appendChild(noteEl);
+            }
+            pmStores.appendChild(wrapper);
+          }
+        );
+      }
+
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+      document.body.style.overflow = "hidden";
+    };
+
+    cards.forEach((card) => {
+      const rawJson = card.dataset.productJson;
+      if (!rawJson) return;
+      let parsedItem: any = null;
+      try {
+        parsedItem = JSON.parse(rawJson);
+      } catch {
+        return;
+      }
+
+      card.querySelectorAll("[data-open-product-modal]").forEach((trigger) => {
+        trigger.addEventListener("click", (e) => {
+          e.preventDefault();
+          openModal(parsedItem);
+        });
+      });
+    });
+
+    closeBtn.addEventListener("click", closeModal);
+    backdrop.addEventListener("click", closeModal);
+
+    if (!(window as any).__redsunProductModalEscBound) {
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          const activeModal = document.getElementById("product-modal");
+          if (activeModal && !activeModal.classList.contains("hidden")) {
+            activeModal.classList.add("hidden");
+            activeModal.classList.remove("flex");
+            document.body.style.overflow = "";
+          }
+        }
+      });
+      (window as any).__redsunProductModalEscBound = true;
+    }
+  });
+</script>

@@ -1,7 +1,7 @@
 ---
 title: "The Demon That Stole Beauties: The White Ape of the Southern Frontier"
 author: "Red Sun Japan"
-pubDatetime: 2026-11-05T00:00:00Z
+pubDatetime: 2026-11-05T23:00:50+09:00
 description: "A sixth-century Chinese demon tale of abducted wives crossed into Japan's kaidan tradition—trace its ancient origins, eerie prophecy, and strange afterlife."
 tags:
   - "kaidan"
@@ -13,6 +13,7 @@ draft: false
 featured: false
 ogImage: "/images/posts/the-demon-that-stole-beauties/hero.jpeg"
 heroImage: "/images/posts/the-demon-that-stole-beauties/hero.jpeg"
+youtube_video_id: "MXL-wFyZMZk"
 ---
 
 The bar across the door had not moved. The screens had not torn. And still, by morning, the wife of a garrison officer named **Ōyō Kotsu** was gone from a room with no visible way out. This is the seed from which "The Demon That Stole Beauties" grows — a story old enough that its earliest tellers did not think to explain how a locked room could be emptied without a mark left behind. They simply recorded that it was so.

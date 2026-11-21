@@ -1,7 +1,7 @@
 ---
 title: "Kappa: A Journey Through the River Spirit's Country"
 author: "Red Sun Japan"
-pubDatetime: 2026-10-15T00:00:00Z
+pubDatetime: 2026-10-15T22:35:38+09:00
 description: "Inside Akutagawa Ryūnosuke's 1927 novella Kappa — the psychiatric patient who fell into the river-spirit country, lived among the kappa for a year, and tried to climb back to a world that no longer felt like home."
 tags:
   - "kaidan"
@@ -14,6 +14,7 @@ draft: false
 featured: false
 ogImage: "/images/posts/kappa-a-journey-through-the-river-spirit-s-country/hero.jpeg"
 heroImage: "/images/posts/kappa-a-journey-through-the-river-spirit-s-country/hero.jpeg"
+youtube_video_id: "K7SJfZUAapE"
 ---
 
 The fog came down the Azusa valley like something poured, not something drifting, and it did not lift when the hour told him it should. A man with a watch and a tin of corned beef and a small fire looked into the round glass face of that watch and saw, in its reflection, something looking back at him from the rock behind his shoulder. That is where this story begins, and it begins with a patient.

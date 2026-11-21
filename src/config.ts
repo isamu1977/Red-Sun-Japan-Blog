@@ -24,9 +24,9 @@ export const SITE = {
   title: "Red Sun Japan",
   author: "Red Sun Japan",
   profile: "https://www.youtube.com/@redsunjapan",
-  desc: "Chronicles of Feudal Japan, Samurai Legends, and Dark Folklore.",
+  desc: "The digital archive of authentic Japanese horror, dark folklore, Kaidan, Yokai chronicles, and eerie urban legends.",
   description:
-    "Chronicles of Feudal Japan, Samurai Legends, and Dark Folklore.",
+    "The digital archive of authentic Japanese horror, dark folklore, Kaidan, Yokai chronicles, and eerie urban legends.",
   ogImage: userConfig.site.ogImage ?? DEFAULT_OG_IMAGE,
   lang: userConfig.site.lang ?? "en",
   timezone: userConfig.site.timezone ?? "Asia/Tokyo",

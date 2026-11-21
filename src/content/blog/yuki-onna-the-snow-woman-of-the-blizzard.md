@@ -1,7 +1,7 @@
 ---
 title: "Yuki Onna: The Snow Woman of the Blizzard in Edo Folklore"
 author: "Red Sun Japan"
-pubDatetime: 2026-10-22T00:00:00Z
+pubDatetime: 2026-10-22T23:45:26+09:00
 description: "Inside a ferryman's hut, Lafcadio Hearn recorded Yuki Onna—the Edo-period kaidan of a snow spirit who spares a woodcutter, then returns to marry him."
 tags:
   - "kaidan"
@@ -12,6 +12,7 @@ draft: false
 featured: false
 ogImage: "/images/posts/yuki-onna-the-snow-woman-of-the-blizzard/hero.jpeg"
 heroImage: "/images/posts/yuki-onna-the-snow-woman-of-the-blizzard/hero.jpeg"
+youtube_video_id: "Rw-0lTM2WIE"
 ---
 
 Two mats of floor, one door, no window — that is all the shelter that exists in the story, and it is almost enough to explain why the story has survived three centuries of retelling. A room that small leaves nothing to hide behind. When the door opens on its own in the middle of the night, there is no corner of the hut dark enough to pretend you did not see what came through it.

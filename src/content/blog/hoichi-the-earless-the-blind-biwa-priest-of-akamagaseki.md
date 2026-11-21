@@ -1,7 +1,7 @@
 ---
 title: "Hoichi the Earless: The Blind Biwa Priest of Akamagaseki"
 author: "Red Sun Japan"
-pubDatetime: 2026-10-20T00:00:00Z
+pubDatetime: 2026-10-20T23:00:30+09:00
 description: "A blind biwa priest is summoned nightly to play for ghostly nobles in Akamagaseki, a chilling Edo-period kaidan from Japanese folklore."
 tags:
   - "kaidan"
@@ -12,6 +12,7 @@ draft: false
 featured: false
 ogImage: "/images/posts/hoichi-the-earless-the-blind-biwa-priest-of-akamagaseki/hero.jpeg"
 heroImage: "/images/posts/hoichi-the-earless-the-blind-biwa-priest-of-akamagaseki/hero.jpeg"
+youtube_video_id: "59kiAtF5jr8"
 ---
 
 The strings of a *biwa* do not sound like other instruments when struck in anger. They crack rather than ring, and on the night in question, beneath the sound of rain on temple stone, a blind man's voice was chanting the death of an empire to no audience that the living could see.

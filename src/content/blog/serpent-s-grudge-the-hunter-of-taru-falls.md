@@ -1,7 +1,7 @@
 ---
 title: "Serpent's Grudge: The Hunter of Taru Falls and Its Edo-Era Roots"
 author: "Red Sun Japan"
-pubDatetime: 2026-11-03T00:00:00Z
+pubDatetime: 2026-11-03T23:45:25+09:00
 description: "A Kōchi Prefecture kaidan of a hunter's fatal pride at Taru Falls, where a slain serpent's grudge burns an Edo-period village household to ash."
 tags:
   - "kaidan"
@@ -13,6 +13,7 @@ draft: false
 featured: false
 ogImage: "/images/posts/serpent-s-grudge-the-hunter-of-taru-falls/hero.jpeg"
 heroImage: "/images/posts/serpent-s-grudge-the-hunter-of-taru-falls/hero.jpeg"
+youtube_video_id: "fc8ssetd1AM"
 ---
 
 The water at Taru no Taki has never once stopped falling, and the people who still live beneath it have never once forgotten why a certain family cannot walk its banks. This is the strange inheritance of *Serpent's Grudge: The Hunter of Taru Falls* — not a tale invented for the page, but a piece of lived memory from the mountain villages of **Kōchi Prefecture**, carried forward by voice long before anyone thought to write it down. What follows is an attempt to walk back through that oral record, to the falls, the gun, the hide strung between two trees, and the fire that answered it.

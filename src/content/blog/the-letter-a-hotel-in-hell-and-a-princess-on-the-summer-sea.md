@@ -1,7 +1,7 @@
 ---
 title: "Lafcadio Hearn's Nagasaki Letter: A Hotel in Hell, a Dragon Princess"
 author: "Red Sun Japan"
-pubDatetime: 2026-11-17T00:00:00Z
+pubDatetime: 2026-11-17T22:43:24+09:00
 description: "A kaidan-inflected Meiji-era travel letter from Lafcadio Hearn blends Nagasaki's summer heat with the ancient legend of Urashima Tarō's dragon princess."
 tags:
   - "kaidan"
@@ -12,6 +12,7 @@ draft: false
 featured: false
 ogImage: "/images/posts/the-letter-a-hotel-in-hell-and-a-princess-on-the-summer-sea/hero.jpeg"
 heroImage: "/images/posts/the-letter-a-hotel-in-hell-and-a-princess-on-the-summer-sea/hero.jpeg"
+youtube_video_id: "fD-lRPlSrO8"
 ---
 
 The gate gives way at three in the morning, and a sunburned foreigner in a wool suit falls through it into a garden he was never meant to enter uninvited. This is not a scene from a *kaidan* anthology, nor from any formally transmitted piece of Japanese folklore. It is a letter — private, unpolished, written in exhaustion — and it survives today as one of the strangest travel documents of the Meiji era: a bridge between an ordinary bad trip to Nagasaki and the oldest dragon-princess story Japan knows how to tell.

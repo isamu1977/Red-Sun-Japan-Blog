@@ -1,0 +1,71 @@
+{
+  "categories": [
+    { "id": "all", "label": "All Editions" },
+    { "id": "books", "label": "Books & Audiobooks" },
+    { "id": "prints", "label": "Fine Art Prints & Puzzles" }
+  ],
+  "items": [
+    {
+      "id": "vol-01",
+      "category": "books",
+      "featured": true,
+      "badge": "VOLUME 01 • PRINT, DIGITAL & AUDIOBOOK",
+      "title": "Chronicles of the Red Sun, Vol. 1",
+      "subtitle": "Illustrated & Annotated Edo Kaidan",
+      "coverImage": "/assets/books/cover_ebook_vol_01.jpg",
+      "priceDisplay": "From $6.99",
+      "shortDescription": "Eleven complete, unabridged tales of Edo- and Meiji-period supernatural folklore, newly translated with 22 dark painterly illustrations, historical provenance essays, scholarly footnotes, and an optional 4-hour unabridged audiobook edition.",
+      "fullDescription": [
+        "Step into the shadowed archives of feudal Japan. Chronicles of the Red Sun, Vol. 1 gathers eleven complete, unabridged tales of Edo- and Meiji-period supernatural folklore (Kaidan), newly translated, illustrated, and annotated for modern readers.",
+        "Available as a Kindle eBook and 6x9 inch Paperback on Amazon, or directly from our official Ko-fi archive as a DRM-free Collector's Ivory PDF, an unabridged 4-hour 11-chapter MP3 Audiobook, or a combined Bundle."
+      ],
+      "specs": [
+        { "label": "Print & eBook", "value": "Amazon Kindle & Paperback (6 x 9 in, 160 Pages)" },
+        { "label": "Collector Digital", "value": "DRM-Free Ivory PDF & 4+ Hour MP3 Audiobook (Ko-fi)" },
+        { "label": "Artwork", "value": "22 Original Dark Painterly Plates" },
+        { "label": "Author", "value": "Red Sun Japan Archives" },
+        { "label": "Language", "value": "English (with Japanese Kanji & Cultural Glossary)" }
+      ],
+      "contents": [
+        "I. The Peony Lantern's Lesser Cousin: The Spectral Calling-Tube of Fuji-ura",
+        "II. Kappa: A Journey Through the River Spirit's Country (Ryunosuke Akutagawa)",
+        "III. Hoichi the Earless",
+        "IV. The Snow Woman of the Blizzard (Yuki-onna)",
+        "V. Rokurokubi: The Long-Necked Woman of Kai",
+        "VI. Chugoro's Tale: The Toad Beneath the Bridge",
+        "VII. Serpent's Grudge: The Hunter of Taru Falls",
+        "VIII. Osada's Tale: The Promise She Came Back to Keep",
+        "IX. Ikiryo: The Living Wrath That Strangled a Clerk",
+        "X. The Letter: A Hotel in Hell, and a Princess on the Summer Sea",
+        "XI. Okame's Tale: The Wife Who Returned Every Night"
+      ],
+      "stores": [
+        {
+          "label": "Buy on Amazon (Kindle & Paperback)",
+          "url": "https://www.amazon.com/dp/B0HS8JFT4J",
+          "variant": "primary",
+          "note": "Worldwide delivery & instant Kindle download"
+        },
+        {
+          "label": "Collector's Ivory PDF — Ko-fi ($6.99)",
+          "url": "https://ko-fi.com/s/c1e70d9853",
+          "variant": "secondary",
+          "note": "DRM-free 160-page illustrated digital edition"
+        },
+        {
+          "label": "Unabridged 4-Hour Audiobook — Ko-fi ($9.99)",
+          "url": "https://ko-fi.com/s/e1e19b82f9",
+          "variant": "secondary",
+          "note": "11 numbered MP3 chapters • Ad-free night narration"
+        },
+        {
+          "label": "PDF + Audiobook Complete Bundle (Ko-fi)",
+          "url": "https://ko-fi.com/redsunjapan/shop",
+          "variant": "ghost",
+          "note": "Get both the illustrated PDF and 4-hour audio archive"
+        }
+      ]
+    }
+  ],
+  "prints": []
+}

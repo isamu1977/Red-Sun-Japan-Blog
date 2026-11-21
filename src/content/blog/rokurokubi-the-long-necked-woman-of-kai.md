@@ -1,7 +1,7 @@
 ---
 title: "Rokurokubi: The Long-Necked Woman of Kai and Her Headless Kin"
 author: "Red Sun Japan"
-pubDatetime: 2026-10-26T00:00:00Z
+pubDatetime: 2026-10-27T23:00:00+09:00
 description: "A scholarly companion to the rokurokubi of Kai, tracing Lafcadio Hearn's Kwaidan back through Chinese spirit-records and Edo-period provincial belief."
 tags:
   - "kaidan"
@@ -13,6 +13,7 @@ draft: false
 featured: false
 ogImage: "/images/posts/rokurokubi-the-long-necked-woman-of-kai/hero.jpeg"
 heroImage: "/images/posts/rokurokubi-the-long-necked-woman-of-kai/hero.jpeg"
+youtube_video_id: "zFeL-ZIAmLU"
 ---
 
 The paper panel slid open without a sound, and that absence of sound is where this particular *kaidan* earns its place in Japanese folklore. No creak, no catch — only the quiet discovery of five bodies breathing evenly beneath a lamp's dim light, each one warm, each one headless, each one sealed at the neck as cleanly as a leaf parting from its stem. There is no blood in this story. That is precisely what makes it unbearable.

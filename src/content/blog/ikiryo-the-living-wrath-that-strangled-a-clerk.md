@@ -1,7 +1,7 @@
 ---
 title: "Ikiryo: The Living Wrath That Strangled an Edo Clerk"
 author: "Red Sun Japan"
-pubDatetime: 2026-11-12T00:00:00Z
+pubDatetime: 2026-11-12T23:00:27+09:00
 description: "A kaidan from Edo period Reigan-jima: an ikiryo, the living wrath that strangled a clerk night after night, born not from a ghost but a secret human hatred."
 tags:
   - "kaidan"
@@ -13,6 +13,7 @@ draft: false
 featured: false
 ogImage: "/images/posts/ikiryo-the-living-wrath-that-strangled-a-clerk/hero.jpeg"
 heroImage: "/images/posts/ikiryo-the-living-wrath-that-strangled-a-clerk/hero.jpeg"
+youtube_video_id: "gC6-w4j3GSQ"
 ---
 
 The hands arrived before the face did. That is the order the young clerk insisted on, every time he was asked to describe what happened behind his closed eyes — first the cold pressure at the windpipe, then, rising out of the dark like something surfacing from river water, a woman's features he knew too well to mistake for a stranger's. No priest had been summoned when the household finally understood what was killing him. No talisman was pasted to a door. The affliction had a name in the old vocabulary of Edo households, and the name was *ikiryō* — the living wraith, the double a soul sheds without ever leaving its body behind.

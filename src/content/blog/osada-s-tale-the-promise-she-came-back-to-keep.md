@@ -1,7 +1,7 @@
 ---
 title: "Osada's Tale: The Promise She Came Back to Keep"
 author: "Red Sun Japan"
-pubDatetime: 2026-11-10T00:00:00Z
+pubDatetime: 2026-11-10T23:00:10+09:00
 description: "A kaidan of Edo-period Japan: a betrothed girl's vow of return, a sealed promise, and the servant girl at an Ikaho inn who spoke words no stranger could have known."
 tags:
   - "kaidan"
@@ -13,6 +13,7 @@ draft: false
 featured: false
 ogImage: "/images/posts/osada-s-tale-the-promise-she-came-back-to-keep/hero.jpeg"
 heroImage: "/images/posts/osada-s-tale-the-promise-she-came-back-to-keep/hero.jpeg"
+youtube_video_id: "90GdkmwHWwE"
 ---
 
 The tea spilled across Nagao Chōsei's fingers before he noticed it had happened. He was watching a servant girl cross a lamp-lit dining room in the mountain village of Ikaho, and something in the tilt of her chin had reached backward through seventeen years and taken hold of him. The woman at the center of this story is called **O-Tei** in the English version most readers meet, but the name she carries in the Japanese original is **Osada** (阿貞, read *osada*) — the older name, from a 1889 collection of Chinese-style ghost tales written in classical Japanese. Hearn's rendering changed the name and kept the promise intact. What follows is one of the quieter, more disciplined entries in the literature of Japanese *kaidan*: no vengeful spirit, no blood on the floorboards, only a vow and the long, patient work of its keeping.

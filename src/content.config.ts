@@ -15,6 +15,7 @@ const posts = defineCollection({
       title: z.string(),
       featured: z.boolean().optional(),
       draft: z.boolean().optional(),
+      youtube_video_id: z.string().optional().nullable(),
       tags: z.array(z.string()).default(["others"]),
       ogImage: z.string().or(image()).optional(),
       heroImage: z.string().or(image()).optional(),
@@ -22,6 +23,11 @@ const posts = defineCollection({
       canonicalURL: z.string().optional(),
       hideEditPost: z.boolean().optional(),
       timezone: z.string().optional(),
+      volume: z
+        .union([z.string(), z.number()])
+        .transform(val => String(val).trim().padStart(2, "0"))
+        .optional()
+        .nullable(),
     }),
 });
 

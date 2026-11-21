@@ -1,0 +1,39 @@
+name: Sync YouTube Public Videos to Blog
+
+on:
+  schedule:
+    # Tuesdays and Thursdays at 23:30 JST (14:30 UTC)
+    - cron: "30 14 * * 2,4"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync-drafts:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Check YouTube status for draft posts
+        env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+        run: node .github/scripts/sync_youtube_drafts.mjs
+
+      - name: Commit and push newly published posts
+        run: |
+          if [ -n "$(git status --porcelain src/content/blog)" ]; then
+            git config user.name "redsunjapan-bot"
+            git config user.email "actions@redsunjapan.com"
+            git add src/content/blog
+            git commit -m "chore(blog): auto-publish posts for public YouTube videos"
+            git push
+          else
+            echo "No drafts became public. Skipping commit."
+          fi

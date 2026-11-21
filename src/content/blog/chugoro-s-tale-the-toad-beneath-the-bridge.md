@@ -1,7 +1,7 @@
 ---
 title: "Chūgorō's Tale: The Toad Beneath the Bridge at Naka-no-hashi"
 author: "Red Sun Japan"
-pubDatetime: 2026-10-29T00:00:00Z
+pubDatetime: 2026-10-29T23:00:17+09:00
 description: "A faithful ashigaru's nightly vanishings beneath a bridge in old Edo reveal a kaidan of love, secrecy, and a toad-spirit's deadly hunger."
 tags:
   - "kaidan"
@@ -12,6 +12,7 @@ draft: false
 featured: false
 ogImage: "/images/posts/chugoro-s-tale-the-toad-beneath-the-bridge/hero.jpeg"
 heroImage: "/images/posts/chugoro-s-tale-the-toad-beneath-the-bridge/hero.jpeg"
+youtube_video_id: "1Arb9E2is1w"
 ---
 
 The lantern-keeper at Naka-no-hashi remembered the silence more than anything else. No current, no insects, no frogs calling from the reeds — just black water moving like oil, and a shape beneath it that had been waiting, patiently, for a man who walked exactly like Chūgorō.
